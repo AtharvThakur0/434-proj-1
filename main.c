@@ -1,14 +1,55 @@
 #include "main.h"
 
+// B-tree parameter
+#define m 2
+
 int main(int argc, char* argv[])
 {
-    generate_file(atoi(argv[1]));
+    if (argc < 4)
+    {
+        printf("Please provide all arguments. Usage: ./main {L} {H} {NP}\n");
+        return -1;
+    }
+    int L = atoi(argv[1]);
+    int H = atoi(argv[2]);
+    int NP = atoi(argv[3]);
+
+    if (L < 150 || H < 0 || H > 150 || NP < 1)
+    {
+        printf("Invalid Arguments.\n");
+        return -1;
+    }
+
+
+    // We skip some tedious steps and directly use the underlying array of integers used to make the file
+    // This is is equivalent to opening and parsing the file into an array if we didnt create the file
+    int16_t* arr;
+    if (!generate_file(L, &arr))
+    {
+        free(arr);
+        return -1;
+    }
+
+    create_tree(arr, L, NP, H);
+
+    free(arr);
+
+
     return 0;
 }
 
-int generate_file(int L)
+int create_tree(int16_t* partition_ptr, int partition_length, int processes_budget, int H)
 {
-    int16_t* arr = malloc(L*sizeof(int16_t));
+    int pipefds[m][2];
+
+    // do somme recursive stuff here
+    return 0;
+}
+
+int generate_file(int L, int16_t** out_array)
+{
+    *out_array = malloc(L*sizeof(int16_t));
+    int16_t* arr = *out_array;
     for (int i = 0; i < L; i++)
     {
         arr[i] = (rand() & 0x7FFF);
@@ -37,6 +78,7 @@ int generate_file(int L)
         fputs(buf,fptr);
     }
 
+    fclose(fptr);
     return 0;
 
 }
