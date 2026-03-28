@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     // We skip some tedious steps and directly use the underlying array of integers used to make the file
     // This is is equivalent to opening and parsing the file into an array if we didnt create the file
     int16_t* arr;
-    if (!generate_file(L, &arr))
+    if (generate_file(L, &arr) < 0)
     {
         free(arr);
         return -1;
