@@ -1,0 +1,43 @@
+ECE 434 Sp26: Process with PID 43825 is creating a tree node with partition starting at 0x6179199bf2a0 with length 12000 and processes budget 6
+ECE 434 Sp26: Parent with PID 43825 assigned partition starting at subindex 0 with length 6000 to child with PID 43826
+ECE 434 Sp26: Child with PID 43827 received a subpartition starting at subindex 6000 with length 6000
+ECE 434 Sp26: Leaf process with PID 43827 is now searching through the partition starting at 0x6179199c2180 with length 6000
+ECE 434 Sp26: Process with PID 43825 is creating a tree node with partition starting at 0x6179199bf2a0 with length 12000 and processes budget 6
+ECE 434 Sp26: Child with PID 43826 received a subpartition starting at subindex 0 with length 6000
+ECE 434 Sp26: Process with PID 43826 is creating a tree node with partition starting at 0x6179199bf2a0 with length 6000 and processes budget 2
+ECE 434 Sp26: Child with PID 43828 received a subpartition starting at subindex 0 with length 3000
+ECE 434 Sp26: Leaf process with PID 43828 is now searching through the partition starting at 0x6179199bf2a0 with length 3000
+ECE 434 Sp26: Process with PID 43825 is creating a tree node with partition starting at 0x6179199bf2a0 with length 12000 and processes budget 6
+ECE 434 Sp26: Child with PID 43826 received a subpartition starting at subindex 0 with length 6000
+ECE 434 Sp26: Process with PID 43826 is creating a tree node with partition starting at 0x6179199bf2a0 with length 6000 and processes budget 2
+ECE 434 Sp26: Parent with PID 43826 assigned partition starting at subindex 0 with length 3000 to child with PID 43828
+ECE 434 Sp26: Child with PID 43829 received a subpartition starting at subindex 3000 with length 3000
+ECE 434 Sp26: Leaf process with PID 43829 is now searching through the partition starting at 0x6179199c0a10 with length 3000
+ECE 434 Sp26: Process with PID 43825 is creating a tree node with partition starting at 0x6179199bf2a0 with length 12000 and processes budget 6
+ECE 434 Sp26: Child with PID 43826 received a subpartition starting at subindex 0 with length 6000
+ECE 434 Sp26: Process with PID 43826 is creating a tree node with partition starting at 0x6179199bf2a0 with length 6000 and processes budget 2
+ECE 434 Sp26: Parent with PID 43826 assigned partition starting at subindex 0 with length 3000 to child with PID 43828
+ECE 434 Sp26: Parent with PID 43826 assigned partition starting at subindex 3000 with length 3000 to child with PID 43829
+ECE 434 Sp26: Process with PID 43826 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 43828 exited normally with code: 1
+
+ECE 434 Sp26: Process 43826 received data from child 43828: max=32740, average=16321.029297, keys_found=38,start_time=5641.600049805,end_time=5641.700206712
+
+ECE 434 Sp26: Child with PID 43829 exited normally with code: 3
+
+ECE 434 Sp26: Process 43826 received data from child 43829: max=32749, average=16062.963867, keys_found=41,start_time=5641.600191790,end_time=5641.700541516
+
+ECE 434 Sp26: Process with PID 43825 is creating a tree node with partition starting at 0x6179199bf2a0 with length 12000 and processes budget 6
+ECE 434 Sp26: Parent with PID 43825 assigned partition starting at subindex 0 with length 6000 to child with PID 43826
+ECE 434 Sp26: Parent with PID 43825 assigned partition starting at subindex 6000 with length 6000 to child with PID 43827
+ECE 434 Sp26: Process with PID 43825 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 43827 exited normally with code: 3
+
+ECE 434 Sp26: Process 43825 received data from child 43827: max=32767, average=16191.205078, keys_found=71,start_time=5641.593736151,end_time=5641.694191293
+
+ECE 434 Sp26: Child with PID 43826 exited normally with code: 1
+
+ECE 434 Sp26: Process 43825 received data from child 43826: max=32749, average=16191.996094, keys_found=79,start_time=5641.594440553,end_time=5641.701318365
+
+ECE 434 Sp26: Final result: max=32767, average=16191.600586, keys_found=150,start_time=5641.591899152,end_time=5641.701516687
+

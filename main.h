@@ -6,12 +6,15 @@
 #include <err.h>
 #include <stdarg.h>
 #include <poll.h>
+#include <time.h>
 
 struct search_result 
 {
     int max;
-    int average;
+    float average;
     int keys_found;
+    struct timespec start_time;
+    struct timespec end_time;
 };
 
 int generate_file(int L, int16_t** out_array);
