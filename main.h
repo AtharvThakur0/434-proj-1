@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <err.h>
+#include <stdarg.h>
 #include <poll.h>
 
 struct search_result 
@@ -14,6 +15,6 @@ struct search_result
 };
 
 int generate_file(int L, int16_t** out_array);
-int create_tree(int16_t* base_ptr, int16_t* partition_ptr, int partition_length, int processes_budget, int L, struct search_result* result);
-int get_return_code(int16_t* base_ptr, int16_t* partition_ptr, int L);
+int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int processes_budget, struct search_result* result);
+void log_msg(const char* format, ...);
 void explain_wait_status(pid_t pid, int status);
