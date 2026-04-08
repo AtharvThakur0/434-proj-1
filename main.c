@@ -374,7 +374,7 @@ int generate_file(int L, int16_t** out_array)
     {
         arr[i] = (rand() & 0x7FFF);
     }
-    for (int hidden = 0; hidden < 150; hidden++)
+    for (int hidden = 0; hidden < 150; hidden++) // 150 always according to instructions
     {
         int i = rand() % L;
         if (arr[i] < 0)

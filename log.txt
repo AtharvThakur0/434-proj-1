@@ -1,47 +1,125 @@
-ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
-ECE 434 Sp26: Child with PID 31319 received a subpartition starting at subindex 0 with length 5000
-ECE 434 Sp26: Process with PID 31319 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 5000 and processes budget 2
-ECE 434 Sp26: Parent with PID 31319 assigned partition starting at subindex 0 with length 2500 to child with PID 31322
-ECE 434 Sp26: Child with PID 31323 received a subpartition starting at subindex 2500 with length 2500
-ECE 434 Sp26: Leaf process with PID 31323 is now searching through the partition starting at 0x64e58fa8d628 with length 2500
-ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
-ECE 434 Sp26: Child with PID 31319 received a subpartition starting at subindex 0 with length 5000
-ECE 434 Sp26: Process with PID 31319 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 5000 and processes budget 2
-ECE 434 Sp26: Child with PID 31322 received a subpartition starting at subindex 0 with length 2500
-ECE 434 Sp26: Leaf process with PID 31322 is now searching through the partition starting at 0x64e58fa8c2a0 with length 2500
-ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
-ECE 434 Sp26: Parent with PID 31318 assigned partition starting at subindex 0 with length 5000 to child with PID 31319
-ECE 434 Sp26: Child with PID 31320 received a subpartition starting at subindex 5000 with length 5000
-ECE 434 Sp26: Leaf process with PID 31320 is now searching through the partition starting at 0x64e58fa8e9b0 with length 5000
-ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
-ECE 434 Sp26: Child with PID 31319 received a subpartition starting at subindex 0 with length 5000
-ECE 434 Sp26: Process with PID 31319 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 5000 and processes budget 2
-ECE 434 Sp26: Parent with PID 31319 assigned partition starting at subindex 0 with length 2500 to child with PID 31322
-ECE 434 Sp26: Parent with PID 31319 assigned partition starting at subindex 2500 with length 2500 to child with PID 31323
-ECE 434 Sp26: Process with PID 31319 is waiting for its children to report back
-ECE 434 Sp26: Child with PID 31323 exited normally with code: 3
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Parent with PID 34094 assigned partition starting at subindex 0 with length 50000 to child with PID 34095
+ECE 434 Sp26: Child with PID 34096 received a subpartition starting at subindex 50000 with length 50000
+ECE 434 Sp26: Process with PID 34096 is creating a tree node with partition starting at 0x71748d89b6b0 with length 50000 and processes budget 6
+ECE 434 Sp26: Parent with PID 34096 assigned partition starting at subindex 0 with length 25000 to child with PID 34099
+ECE 434 Sp26: Child with PID 34101 received a subpartition starting at subindex 25000 with length 25000
+ECE 434 Sp26: Leaf process with PID 34101 is now searching through the partition starting at 0x71748d8a7a00 with length 25000
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Child with PID 34095 received a subpartition starting at subindex 0 with length 50000
+ECE 434 Sp26: Process with PID 34095 is creating a tree node with partition starting at 0x71748d883010 with length 50000 and processes budget 6
+ECE 434 Sp26: Parent with PID 34095 assigned partition starting at subindex 0 with length 25000 to child with PID 34098
+ECE 434 Sp26: Child with PID 34100 received a subpartition starting at subindex 25000 with length 25000
+ECE 434 Sp26: Leaf process with PID 34100 is now searching through the partition starting at 0x71748d88f360 with length 25000
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Child with PID 34095 received a subpartition starting at subindex 0 with length 50000
+ECE 434 Sp26: Process with PID 34095 is creating a tree node with partition starting at 0x71748d883010 with length 50000 and processes budget 6
+ECE 434 Sp26: Child with PID 34098 received a subpartition starting at subindex 0 with length 25000
+ECE 434 Sp26: Process with PID 34098 is creating a tree node with partition starting at 0x71748d883010 with length 25000 and processes budget 2
+ECE 434 Sp26: Parent with PID 34098 assigned partition starting at subindex 0 with length 12500 to child with PID 34106
+ECE 434 Sp26: Child with PID 34107 received a subpartition starting at subindex 12500 with length 12500
+ECE 434 Sp26: Leaf process with PID 34107 is now searching through the partition starting at 0x71748d8891b8 with length 12500
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Child with PID 34095 received a subpartition starting at subindex 0 with length 50000
+ECE 434 Sp26: Process with PID 34095 is creating a tree node with partition starting at 0x71748d883010 with length 50000 and processes budget 6
+ECE 434 Sp26: Child with PID 34098 received a subpartition starting at subindex 0 with length 25000
+ECE 434 Sp26: Process with PID 34098 is creating a tree node with partition starting at 0x71748d883010 with length 25000 and processes budget 2
+ECE 434 Sp26: Child with PID 34106 received a subpartition starting at subindex 0 with length 12500
+ECE 434 Sp26: Leaf process with PID 34106 is now searching through the partition starting at 0x71748d883010 with length 12500
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Parent with PID 34094 assigned partition starting at subindex 0 with length 50000 to child with PID 34095
+ECE 434 Sp26: Child with PID 34096 received a subpartition starting at subindex 50000 with length 50000
+ECE 434 Sp26: Process with PID 34096 is creating a tree node with partition starting at 0x71748d89b6b0 with length 50000 and processes budget 6
+ECE 434 Sp26: Child with PID 34099 received a subpartition starting at subindex 0 with length 25000
+ECE 434 Sp26: Process with PID 34099 is creating a tree node with partition starting at 0x71748d89b6b0 with length 25000 and processes budget 2
+ECE 434 Sp26: Child with PID 34109 received a subpartition starting at subindex 0 with length 12500
+ECE 434 Sp26: Leaf process with PID 34109 is now searching through the partition starting at 0x71748d89b6b0 with length 12500
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Parent with PID 34094 assigned partition starting at subindex 0 with length 50000 to child with PID 34095
+ECE 434 Sp26: Child with PID 34096 received a subpartition starting at subindex 50000 with length 50000
+ECE 434 Sp26: Process with PID 34096 is creating a tree node with partition starting at 0x71748d89b6b0 with length 50000 and processes budget 6
+ECE 434 Sp26: Child with PID 34099 received a subpartition starting at subindex 0 with length 25000
+ECE 434 Sp26: Process with PID 34099 is creating a tree node with partition starting at 0x71748d89b6b0 with length 25000 and processes budget 2
+ECE 434 Sp26: Parent with PID 34099 assigned partition starting at subindex 0 with length 12500 to child with PID 34109
+ECE 434 Sp26: Child with PID 34110 received a subpartition starting at subindex 12500 with length 12500
+ECE 434 Sp26: Leaf process with PID 34110 is now searching through the partition starting at 0x71748d8a1858 with length 12500
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Parent with PID 34094 assigned partition starting at subindex 0 with length 50000 to child with PID 34095
+ECE 434 Sp26: Child with PID 34096 received a subpartition starting at subindex 50000 with length 50000
+ECE 434 Sp26: Process with PID 34096 is creating a tree node with partition starting at 0x71748d89b6b0 with length 50000 and processes budget 6
+ECE 434 Sp26: Child with PID 34099 received a subpartition starting at subindex 0 with length 25000
+ECE 434 Sp26: Process with PID 34099 is creating a tree node with partition starting at 0x71748d89b6b0 with length 25000 and processes budget 2
+ECE 434 Sp26: Parent with PID 34099 assigned partition starting at subindex 0 with length 12500 to child with PID 34109
+ECE 434 Sp26: Parent with PID 34099 assigned partition starting at subindex 12500 with length 12500 to child with PID 34110
+ECE 434 Sp26: Process with PID 34099 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 34109 exited normally with code: 3
 
-ECE 434 Sp26: Process 31319 received data from child 31323: max=32749, average=16176.268555, keys_found=36,start_time=3816.313204874,end_time=3816.413518784
+ECE 434 Sp26: Process 34099 received data from child 34109: max=32763, average=16227.926758, keys_found=27,start_time=4115.776230686,end_time=4115.883245062
 
-ECE 434 Sp26: Child with PID 31322 exited normally with code: 1
+ECE 434 Sp26: Child with PID 34110 exited normally with code: 5
 
-ECE 434 Sp26: Process 31319 received data from child 31322: max=32740, average=16237.684570, keys_found=41,start_time=3816.313129273,end_time=3816.417929800
+ECE 434 Sp26: Process 34099 received data from child 34110: max=32765, average=16250.121094, keys_found=15,start_time=4115.776977128,end_time=4115.883540854
 
-ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
-ECE 434 Sp26: Parent with PID 31318 assigned partition starting at subindex 0 with length 5000 to child with PID 31319
-ECE 434 Sp26: Parent with PID 31318 assigned partition starting at subindex 5000 with length 5000 to child with PID 31320
-ECE 434 Sp26: Process with PID 31318 is waiting for its children to report back
-ECE 434 Sp26: Child with PID 31320 exited normally with code: 3
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Child with PID 34095 received a subpartition starting at subindex 0 with length 50000
+ECE 434 Sp26: Process with PID 34095 is creating a tree node with partition starting at 0x71748d883010 with length 50000 and processes budget 6
+ECE 434 Sp26: Child with PID 34098 received a subpartition starting at subindex 0 with length 25000
+ECE 434 Sp26: Process with PID 34098 is creating a tree node with partition starting at 0x71748d883010 with length 25000 and processes budget 2
+ECE 434 Sp26: Parent with PID 34098 assigned partition starting at subindex 0 with length 12500 to child with PID 34106
+ECE 434 Sp26: Parent with PID 34098 assigned partition starting at subindex 12500 with length 12500 to child with PID 34107
+ECE 434 Sp26: Process with PID 34098 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 34107 exited normally with code: 3
 
-ECE 434 Sp26: Process 31318 received data from child 31320: max=32767, average=16036.809570, keys_found=73,start_time=3816.313053501,end_time=3816.418246571
+ECE 434 Sp26: Process 34098 received data from child 34107: max=32767, average=16505.447266, keys_found=14,start_time=4115.776146759,end_time=4115.878944392
 
-ECE 434 Sp26: Child with PID 31319 exited normally with code: 1
+ECE 434 Sp26: Child with PID 34106 exited normally with code: 1
 
-ECE 434 Sp26: Process 31318 received data from child 31319: max=32749, average=16206.976562, keys_found=77,start_time=3816.312704310,end_time=3816.419428437
+ECE 434 Sp26: Process 34098 received data from child 34106: max=32767, average=16390.248047, keys_found=19,start_time=4115.776058745,end_time=4115.880850517
 
-ECE 434 Sp26: Final result: elements_processed=10000, bytes_sent=288, max=32767, average=16121.892578, keys_found=150,start_time=3816.312274238,end_time=3816.419853658
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Child with PID 34095 received a subpartition starting at subindex 0 with length 50000
+ECE 434 Sp26: Process with PID 34095 is creating a tree node with partition starting at 0x71748d883010 with length 50000 and processes budget 6
+ECE 434 Sp26: Parent with PID 34095 assigned partition starting at subindex 0 with length 25000 to child with PID 34098
+ECE 434 Sp26: Parent with PID 34095 assigned partition starting at subindex 25000 with length 25000 to child with PID 34100
+ECE 434 Sp26: Process with PID 34095 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 34098 exited normally with code: 1
 
-ECE 434 Sp26: Total execution time: 0.107579420 seconds
+ECE 434 Sp26: Process 34095 received data from child 34098: max=32767, average=16447.847656, keys_found=33,start_time=4115.775176410,end_time=4115.885492483
 
-ECE 434 Sp26: Slowest child with PID 31319 with execution time: 0.106724127 seconds
+ECE 434 Sp26: Child with PID 34100 exited normally with code: 3
+
+ECE 434 Sp26: Process 34095 received data from child 34100: max=32766, average=16358.333008, keys_found=40,start_time=4115.773702351,end_time=4115.876238435
+
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Parent with PID 34094 assigned partition starting at subindex 0 with length 50000 to child with PID 34095
+ECE 434 Sp26: Child with PID 34096 received a subpartition starting at subindex 50000 with length 50000
+ECE 434 Sp26: Process with PID 34096 is creating a tree node with partition starting at 0x71748d89b6b0 with length 50000 and processes budget 6
+ECE 434 Sp26: Parent with PID 34096 assigned partition starting at subindex 0 with length 25000 to child with PID 34099
+ECE 434 Sp26: Parent with PID 34096 assigned partition starting at subindex 25000 with length 25000 to child with PID 34101
+ECE 434 Sp26: Process with PID 34096 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 34101 exited normally with code: 4
+
+ECE 434 Sp26: Process 34096 received data from child 34101: max=32761, average=16386.091797, keys_found=35,start_time=4115.773100977,end_time=4115.874172380
+
+ECE 434 Sp26: Child with PID 34099 exited normally with code: 2
+
+ECE 434 Sp26: Process 34096 received data from child 34099: max=32765, average=16239.023438, keys_found=42,start_time=4115.775575003,end_time=4115.884474736
+
+ECE 434 Sp26: Process with PID 34094 is creating a tree node with partition starting at 0x71748d883010 with length 100000 and processes budget 14
+ECE 434 Sp26: Parent with PID 34094 assigned partition starting at subindex 0 with length 50000 to child with PID 34095
+ECE 434 Sp26: Parent with PID 34094 assigned partition starting at subindex 50000 with length 50000 to child with PID 34096
+ECE 434 Sp26: Process with PID 34094 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 34095 exited normally with code: 1
+
+ECE 434 Sp26: Process 34094 received data from child 34095: max=32767, average=16403.089844, keys_found=73,start_time=4115.772653174,end_time=4115.885975364
+
+ECE 434 Sp26: Child with PID 34096 exited normally with code: 3
+
+ECE 434 Sp26: Process 34094 received data from child 34096: max=32765, average=16312.557617, keys_found=77,start_time=4115.772683528,end_time=4115.890554812
+
+ECE 434 Sp26: Final result: elements_processed=100000, bytes_sent=736, max=32767, average=16357.824219, keys_found=150,start_time=4115.772263788,end_time=4115.890926147
+
+ECE 434 Sp26: Total execution time: 0.118662359 seconds
+
+ECE 434 Sp26: Slowest child with PID 34096 with execution time: 0.117871284 seconds
 
