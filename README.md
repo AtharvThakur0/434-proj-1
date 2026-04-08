@@ -1,1 +1,2 @@
-# 434-proj-1
+Execute the following:
+make clean && make && ./main {L} {H} {NP}

@@ -6,6 +6,7 @@
 #define POLL_TIMEOUT 5
 
 FILE* log_file;
+FILE* csv_file;
 
 int main(int argc, char* argv[])
 {
@@ -35,9 +36,83 @@ int main(int argc, char* argv[])
     }
 
     log_file = fopen("log.txt", "w");
+    csv_file = fopen("trace.csv", "w");
+    fprintf(csv_file, "PID,elements_processed,bytes_sent,max,average,keys_found,start_time_s,start_time_ns,end_time_s,end_time_ns\n");
+    fflush(csv_file);
     struct search_result result = {0};
     create_tree(arr, L, 0,NP-1, &result);
-    log_msg("ECE 434 Sp26: Final result: max=%d, average=%f, keys_found=%d,start_time=%ld.%09ld,end_time=%ld.%09ld\n", result.max, result.average, result.keys_found, result.start_time.tv_sec, result.start_time.tv_nsec, result.end_time.tv_sec, result.end_time.tv_nsec);
+    log_msg("ECE 434 Sp26: Final result: elements_processed=%d, bytes_sent=%zu, max=%d, average=%f, keys_found=%d,start_time=%ld.%09ld,end_time=%ld.%09ld\n", result.elements_processed, result.bytes_sent, result.max, result.average, result.keys_found, result.start_time.tv_sec, result.start_time.tv_nsec, result.end_time.tv_sec, result.end_time.tv_nsec);
+    long total_sec = result.end_time.tv_sec - result.start_time.tv_sec;
+    long total_nsec = result.end_time.tv_nsec - result.start_time.tv_nsec;
+    if (total_nsec < 0)
+    {
+        total_sec--;
+        total_nsec += 1000000000;
+    }
+    log_msg("ECE 434 Sp26: Total execution time: %ld.%09ld seconds\n", total_sec, total_nsec);
+    fclose(csv_file);
+    csv_file = fopen("trace.csv", "r");
+    if (csv_file == NULL)
+    {
+        err(-1, "Failed to open trace.csv for reading. Exiting.");
+    }
+
+    // Find the slowest child
+    long max_time_sec = 0;
+    long max_time_nsec = 0;
+    int slowest_child_pid = -1;
+    char line[256];
+    while (fgets(line, sizeof(line), csv_file) != NULL)
+    {
+        if (line[0] == 'P') // skip header
+            continue;   
+        char* token = strtok(line, ",");
+        if (token == NULL)
+        {
+            continue;
+        }
+        int pid = atoi(token);
+        token = strtok(NULL, ",");
+        token = strtok(NULL, ",");
+        token = strtok(NULL, ",");
+        token = strtok(NULL, ",");
+        token = strtok(NULL, ",");
+        token = strtok(NULL, ",");
+        if (token == NULL)
+            continue;
+
+        long start_sec = atol(token);
+        token = strtok(NULL, ",");
+        if (token == NULL)
+            continue;
+        long start_nsec = atol(token);
+        token = strtok(NULL, ",");
+        if (token == NULL)
+            continue;
+        long end_sec = atol(token);
+        token = strtok(NULL, ",");
+        if (token == NULL)
+            continue;
+        long end_nsec = atol(token);
+
+        long elapsed_sec = end_sec - start_sec;
+        long elapsed_nsec = end_nsec - start_nsec;
+        if (elapsed_nsec < 0)
+        {
+            elapsed_sec--;
+            elapsed_nsec += 1000000000;
+        }
+        
+        if (elapsed_sec > max_time_sec || (elapsed_sec == max_time_sec && elapsed_nsec > max_time_nsec))
+        {
+            max_time_sec = elapsed_sec;
+            max_time_nsec = elapsed_nsec;
+            slowest_child_pid = pid;
+        }
+
+    }
+    log_msg("ECE 434 Sp26: Slowest child with PID %d with execution time: %ld.%09ld seconds\n", slowest_child_pid, max_time_sec, max_time_nsec);
+    fclose(csv_file);
     fclose(log_file);
     free(arr);
 
@@ -90,6 +165,7 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
                 err(-1, "Process with PID %d failed to write to pipe. Exiting.", getpid());
             }
             log_msg("ECE 434 Sp26: Parent with PID %d assigned partition starting at subindex %d with length %d to child with PID %d", getpid(), (int)((void*)assigned_partition_ptr - (void*)partition_ptr) >> 1, partition_length/m, pids[i]);
+            result->bytes_sent += sizeof(assigned_partition_ptr);
             close(pipefds[i][1]);
         }
     }
@@ -109,6 +185,7 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
         {
             create_tree(my_partition,partition_length/m,m*tree_id+i,processes_budget/m, result);
             clock_gettime(CLOCK_MONOTONIC, &result->end_time);
+            result->bytes_sent += sizeof(*result);
             int ret = write(pipefds[i][1],(void*)result,sizeof(*result));
             if (ret < sizeof(*result))
             {
@@ -118,12 +195,14 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
         }
         else // if I am a leaf worker
         {
-            usleep(100000);
+            usleep(100000); // as per instructions
             pid_t mypid = getpid();
             struct search_result s = {
                 .max = 0,
                 .average = 0,
-                .keys_found = 0
+                .keys_found = 0,
+                .elements_processed = partition_length/m,
+                .bytes_sent = sizeof(s)
             };
             s.start_time = result->start_time; // using actual start time of this child
             
@@ -209,6 +288,10 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
                     }
                     result->average += child_res.average;
                     result->keys_found += child_res.keys_found;
+                    result->elements_processed += child_res.elements_processed;
+                    result->bytes_sent += child_res.bytes_sent;
+
+                    log_csv(pids[i], &child_res);
                     
                     remaining_children--;
                 }
@@ -236,6 +319,11 @@ void log_msg(const char* format, ...)
     va_end(args);
     printf("\n");
     fprintf(log_file, "\n");
+}
+
+void log_csv(pid_t PID, struct search_result* result)
+{
+    fprintf(csv_file, "%d,%d,%ld,%d,%f,%d,%ld,%09ld,%ld,%09ld\n", PID, result->elements_processed, result->bytes_sent, result->max, result->average, result->keys_found, result->start_time.tv_sec, result->start_time.tv_nsec, result->end_time.tv_sec, result->end_time.tv_nsec);
 }
 
 // this value is computed by mapping the start of this child's unique partition to an integer 0 from to 255 (the range of valid return codes)
