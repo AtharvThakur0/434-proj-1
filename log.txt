@@ -1,25 +1,47 @@
-ECE 434 Sp26: Process with PID 23466 is creating a tree node with partition starting at 0x640f2160f2a0 with length 10000 and processes budget 2
-ECE 434 Sp26: Child with PID 23467 received a subpartition starting at subindex 0 with length 5000
-ECE 434 Sp26: Leaf process with PID 23467 is now searching through the partition starting at 0x640f2160f2a0 with length 5000
-ECE 434 Sp26: Process with PID 23466 is creating a tree node with partition starting at 0x640f2160f2a0 with length 10000 and processes budget 2
-ECE 434 Sp26: Parent with PID 23466 assigned partition starting at subindex 0 with length 5000 to child with PID 23467
-ECE 434 Sp26: Child with PID 23468 received a subpartition starting at subindex 5000 with length 5000
-ECE 434 Sp26: Leaf process with PID 23468 is now searching through the partition starting at 0x640f216119b0 with length 5000
-ECE 434 Sp26: Process with PID 23466 is creating a tree node with partition starting at 0x640f2160f2a0 with length 10000 and processes budget 2
-ECE 434 Sp26: Parent with PID 23466 assigned partition starting at subindex 0 with length 5000 to child with PID 23467
-ECE 434 Sp26: Parent with PID 23466 assigned partition starting at subindex 5000 with length 5000 to child with PID 23468
-ECE 434 Sp26: Process with PID 23466 is waiting for its children to report back
-ECE 434 Sp26: Child with PID 23467 exited normally with code: 1
+ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
+ECE 434 Sp26: Child with PID 31319 received a subpartition starting at subindex 0 with length 5000
+ECE 434 Sp26: Process with PID 31319 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 5000 and processes budget 2
+ECE 434 Sp26: Parent with PID 31319 assigned partition starting at subindex 0 with length 2500 to child with PID 31322
+ECE 434 Sp26: Child with PID 31323 received a subpartition starting at subindex 2500 with length 2500
+ECE 434 Sp26: Leaf process with PID 31323 is now searching through the partition starting at 0x64e58fa8d628 with length 2500
+ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
+ECE 434 Sp26: Child with PID 31319 received a subpartition starting at subindex 0 with length 5000
+ECE 434 Sp26: Process with PID 31319 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 5000 and processes budget 2
+ECE 434 Sp26: Child with PID 31322 received a subpartition starting at subindex 0 with length 2500
+ECE 434 Sp26: Leaf process with PID 31322 is now searching through the partition starting at 0x64e58fa8c2a0 with length 2500
+ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
+ECE 434 Sp26: Parent with PID 31318 assigned partition starting at subindex 0 with length 5000 to child with PID 31319
+ECE 434 Sp26: Child with PID 31320 received a subpartition starting at subindex 5000 with length 5000
+ECE 434 Sp26: Leaf process with PID 31320 is now searching through the partition starting at 0x64e58fa8e9b0 with length 5000
+ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
+ECE 434 Sp26: Child with PID 31319 received a subpartition starting at subindex 0 with length 5000
+ECE 434 Sp26: Process with PID 31319 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 5000 and processes budget 2
+ECE 434 Sp26: Parent with PID 31319 assigned partition starting at subindex 0 with length 2500 to child with PID 31322
+ECE 434 Sp26: Parent with PID 31319 assigned partition starting at subindex 2500 with length 2500 to child with PID 31323
+ECE 434 Sp26: Process with PID 31319 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 31323 exited normally with code: 3
 
-ECE 434 Sp26: Process 23466 received data from child 23467: max=32749, average=16206.969727, keys_found=77,start_time=2873.299687135,end_time=2873.399874257
+ECE 434 Sp26: Process 31319 received data from child 31323: max=32749, average=16176.268555, keys_found=36,start_time=3816.313204874,end_time=3816.413518784
 
-ECE 434 Sp26: Child with PID 23468 exited normally with code: 3
+ECE 434 Sp26: Child with PID 31322 exited normally with code: 1
 
-ECE 434 Sp26: Process 23466 received data from child 23468: max=32767, average=16036.809570, keys_found=73,start_time=2873.299772394,end_time=2873.399913312
+ECE 434 Sp26: Process 31319 received data from child 31322: max=32740, average=16237.684570, keys_found=41,start_time=3816.313129273,end_time=3816.417929800
 
-ECE 434 Sp26: Final result: elements_processed=10000, bytes_sent=144, max=32767, average=16121.889648, keys_found=150,start_time=2873.298991588,end_time=2873.400247974
+ECE 434 Sp26: Process with PID 31318 is creating a tree node with partition starting at 0x64e58fa8c2a0 with length 10000 and processes budget 6
+ECE 434 Sp26: Parent with PID 31318 assigned partition starting at subindex 0 with length 5000 to child with PID 31319
+ECE 434 Sp26: Parent with PID 31318 assigned partition starting at subindex 5000 with length 5000 to child with PID 31320
+ECE 434 Sp26: Process with PID 31318 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 31320 exited normally with code: 3
 
-ECE 434 Sp26: Total execution time: 0.101256386 seconds
+ECE 434 Sp26: Process 31318 received data from child 31320: max=32767, average=16036.809570, keys_found=73,start_time=3816.313053501,end_time=3816.418246571
 
-ECE 434 Sp26: Slowest child with PID 23467 with execution time: 0.100187122 seconds
+ECE 434 Sp26: Child with PID 31319 exited normally with code: 1
+
+ECE 434 Sp26: Process 31318 received data from child 31319: max=32749, average=16206.976562, keys_found=77,start_time=3816.312704310,end_time=3816.419428437
+
+ECE 434 Sp26: Final result: elements_processed=10000, bytes_sent=288, max=32767, average=16121.892578, keys_found=150,start_time=3816.312274238,end_time=3816.419853658
+
+ECE 434 Sp26: Total execution time: 0.107579420 seconds
+
+ECE 434 Sp26: Slowest child with PID 31319 with execution time: 0.106724127 seconds
 

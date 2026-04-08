@@ -3,7 +3,7 @@
 // B-tree parameter
 #define m 2
 #define CHILD_CONSTANT -0xC
-#define POLL_TIMEOUT 5
+#define POLL_TIMEOUT 5000
 
 FILE* log_file;
 FILE* csv_file;
@@ -245,12 +245,31 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
     int remaining_children = m;
     int isReaped[m] = {0};
     log_msg("ECE 434 Sp26: Process with PID %d is waiting for its children to report back", mypid);
+    // Use a shell to print out pstree since the function isn't provided. Note this is not stored in the log file.
+    char cmd[128];
+    snprintf(cmd, sizeof(cmd), "pstree -p %d", mypid);
+    system(cmd);
+
     while (remaining_children)
     {
         int event_count = poll(pollfds, m, POLL_TIMEOUT);
         if (event_count < 0)
         {
             err(-1, "A polling error (%d) occured",event_count);
+        }
+        if (event_count == 0)
+        {
+            // TIMEOUT passed, killing children & reassigning task
+            for (int i = 0; i < m; i++)
+            {
+                if (isReaped[i])
+                {
+                    continue;
+                }
+                kill(pids[i], SIGKILL);
+                waitpid(pids[i], NULL, 0);
+                return create_tree(my_partition,partition_length,tree_id,processes_budget, result);
+            }
         }
         if (event_count)
         {

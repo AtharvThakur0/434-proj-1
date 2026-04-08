@@ -6,6 +6,7 @@
 #include <err.h>
 #include <stdarg.h>
 #include <poll.h>
+#include <signal.h>
 #include <time.h>
 #include<string.h>
 
