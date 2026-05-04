@@ -10,6 +10,8 @@
 #include <time.h>
 #include<string.h>
 
+#include <signal.h>
+
 struct search_result 
 {
     int elements_processed;
@@ -26,3 +28,8 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
 void log_msg(const char* format, ...);
 void log_csv(pid_t PID, struct search_result* result);
 void explain_wait_status(pid_t pid, int status);
+void sigusr1_handler(int signum, siginfo_t* info, void* context);
+void termination_handler(int signum);
+void sigquit_handler(int signum);
+void sigint_handler(int signum);
+void print_pstree();

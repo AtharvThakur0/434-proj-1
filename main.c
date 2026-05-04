@@ -8,6 +8,8 @@
 FILE* log_file;
 FILE* csv_file;
 
+int my_tree_id;
+
 int main(int argc, char* argv[])
 {
     if (argc < 4)
@@ -35,13 +37,36 @@ int main(int argc, char* argv[])
         return -1;
     }
 
+    // part 2 modifications {
+
+    
+    signal(SIGQUIT, sigquit_handler);
+
+    struct sigaction sa;
+    sa.sa_flags = SA_SIGINFO;
+    sa.sa_sigaction = sigusr1_handler;
+    sigaction(SIGUSR1, &sa, NULL);
+
+    struct sigaction sa2;
+    sa2.sa_handler = sigint_handler;
+    sigaction(SIGINT, &sa2, NULL);
+    
+    // OR 
+    //signal(SIGINT, SIG_IGN);
+    
+    //}
+    
+
+    // assign global var file ptrs
     log_file = fopen("log.txt", "w");
     csv_file = fopen("trace.csv", "w");
     fprintf(csv_file, "PID,elements_processed,bytes_sent,max,average,keys_found,start_time_s,start_time_ns,end_time_s,end_time_ns\n");
-    fflush(csv_file);
+    fflush(csv_file); // necessary to avoid multiple prints
     struct search_result result = {0};
-    create_tree(arr, L, 0,NP-1, &result);
+    create_tree(arr, L, 0,NP-1, &result); // root call, processes  budget is NP - 1 since root counts as a process
     log_msg("ECE 434 Sp26: Final result: elements_processed=%d, bytes_sent=%zu, max=%d, average=%f, keys_found=%d,start_time=%ld.%09ld,end_time=%ld.%09ld\n", result.elements_processed, result.bytes_sent, result.max, result.average, result.keys_found, result.start_time.tv_sec, result.start_time.tv_nsec, result.end_time.tv_sec, result.end_time.tv_nsec);
+    
+    // calculate full timing
     long total_sec = result.end_time.tv_sec - result.start_time.tv_sec;
     long total_nsec = result.end_time.tv_nsec - result.start_time.tv_nsec;
     if (total_nsec < 0)
@@ -120,6 +145,34 @@ int main(int argc, char* argv[])
     return 0;
 }
 
+// Part 2 {
+void sigusr1_handler(int signum, siginfo_t* info, void* context)
+{
+    log_msg("ECE 434 Sp26: Process with PID %d received SIGUSR1 from process with PID %d\n", getpid(), info->si_pid);
+    int termsig = info->si_value.sival_int;
+    signal(termsig, termination_handler);
+    raise(termsig);
+}
+
+void termination_handler(int signum)
+{
+    log_msg("ECE 434 Sp26: Process with PID %d received \"secret number\" / special termination signal %d\n", getpid(), signum);
+    exit(my_tree_id);
+}
+
+void sigquit_handler(int signum)
+{
+    log_msg("ECE 434 Sp26: Process with PID %d received SIGQUIT\n", getpid());
+    exit(my_tree_id);
+}
+
+void sigint_handler(int signum)
+{
+    log_msg("ECE 434 Sp26: Process with PID %d received SIGINT\n", getpid());   
+}
+//}
+
+
 int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int processes_budget, struct search_result* result)
 {
     clock_gettime(CLOCK_MONOTONIC, &result->start_time);
@@ -170,6 +223,10 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
         }
     }
 
+    // All children are now created, everyone hits these next line
+
+    my_tree_id = tree_id;
+
     // Now that all children are created, we sift through them and do processing
     for (int i =0; i < m; i++)
     {
@@ -191,7 +248,6 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
             {
                 err(-1, "Process with PID %d Failed to write to pipe. Exiting.", getpid());
             }
-            exit(1 + m*i + tree_id);
         }
         else // if I am a leaf worker
         {
@@ -229,8 +285,12 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
             {
                 err(-1, "Process with PID %d Failed to write to pipe. Exiting.", mypid);
             }
-            exit(1 + m*i + tree_id);
         }
+   
+        // New behavior for part 2
+        raise(SIGSTOP);  
+        sleep(100);
+        exit(1 + m*i + tree_id);
     }
 
     // Parent
@@ -246,9 +306,9 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
     int isReaped[m] = {0};
     log_msg("ECE 434 Sp26: Process with PID %d is waiting for its children to report back", mypid);
     // Use a shell to print out pstree since the function isn't provided. Note this is not stored in the log file.
-    char cmd[128];
-    snprintf(cmd, sizeof(cmd), "pstree -p %d", mypid);
-    system(cmd);
+    print_pstree();
+
+    struct search_result child_results[m];
 
     while (remaining_children)
     {
@@ -293,24 +353,23 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
                 isReaped[i] = 1;
                 if (pollfds[i].revents & POLLIN)
                 {
-                    struct search_result child_res;
-                    int readBytes = read(pollfds[i].fd,&child_res,sizeof(child_res));
-                    if (readBytes < sizeof(child_res))
+                    int readBytes = read(pollfds[i].fd,&child_results[i],sizeof(child_results[i]));
+                    if (readBytes < sizeof(child_results[i]))
                     {
                         err(-1, "Process with PID %d failed to read the result of child with PID %d from pipe. Exiting.", mypid, pids[i]);
                     }   
-                    log_msg("ECE 434 Sp26: Process %d received data from child %d: max=%d, average=%f, keys_found=%d,start_time=%ld.%09ld,end_time=%ld.%09ld\n", mypid, pids[i], child_res.max, child_res.average, child_res.keys_found, child_res.start_time.tv_sec, child_res.start_time.tv_nsec, child_res.end_time.tv_sec, child_res.end_time.tv_nsec);
+                    log_msg("ECE 434 Sp26: Process %d received data from child %d: max=%d, average=%f, keys_found=%d,start_time=%ld.%09ld,end_time=%ld.%09ld\n", mypid, pids[i], child_results[i].max, child_results[i].average, child_results[i].keys_found, child_results[i].start_time.tv_sec, child_results[i].start_time.tv_nsec, child_results[i].end_time.tv_sec, child_results[i].end_time.tv_nsec);
                     
-                    if (child_res.max > result->max)
+                    if (child_results[i].max > result->max)
                     {
-                        result->max = child_res.max;
+                        result->max = child_results[i].max;
                     }
-                    result->average += child_res.average;
-                    result->keys_found += child_res.keys_found;
-                    result->elements_processed += child_res.elements_processed;
-                    result->bytes_sent += child_res.bytes_sent;
+                    result->average += child_results[i].average;
+                    result->keys_found += child_results[i].keys_found;
+                    result->elements_processed += child_results[i].elements_processed;
+                    result->bytes_sent += child_results[i].bytes_sent;
 
-                    log_csv(pids[i], &child_res);
+                    log_csv(pids[i], &child_results[i]);
                     
                     remaining_children--;
                 }
@@ -322,6 +381,47 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
         }
         
     }
+
+    int max_keys_found = 0;
+    int max_keys_found_pid = -1;
+    int min_keys_found = 150; // max possible keys found since there are only 150 hidden numbers
+    int min_keys_found_pid = -1;
+
+    for (int i = 0; i < m; i++)
+    {
+        if (child_results[i].keys_found > max_keys_found)
+        {
+            max_keys_found = child_results[i].keys_found;
+            max_keys_found_pid = pids[i];
+        }
+        if (child_results[i].keys_found < min_keys_found)
+        {
+            min_keys_found = child_results[i].keys_found;
+            min_keys_found_pid = pids[i];
+        }
+    }
+
+    kill(max_keys_found_pid, SIGCONT);
+
+    for (int i = 0; i < m; i++)
+    {
+        if (pids[i] != max_keys_found_pid && pids[i] != min_keys_found_pid)
+        {
+            const union sigval sigval = { .sival_int = rand() % 90 + 10 }; // send random secret number
+            sigqueue(pids[i], SIGUSR1, sigval); // send random secret number
+        }
+    }
+    kill(min_keys_found_pid, SIGCONT);
+    sleep(10);
+    kill(min_keys_found, SIGINT);
+    // a bit later
+    print_pstree();
+    sleep(1);
+    for (int i = 0; i < m; i++)
+    {
+        kill(pids[i], SIGQUIT);
+    }
+
     result->average /= m;
     clock_gettime(CLOCK_MONOTONIC, &result->end_time);
     return tree_id;
@@ -338,6 +438,13 @@ void log_msg(const char* format, ...)
     va_end(args);
     printf("\n");
     fprintf(log_file, "\n");
+}
+
+void print_pstree()
+{
+    char cmd[128];
+    snprintf(cmd, sizeof(cmd), "pstree -p %d", getpid());
+    system(cmd);
 }
 
 void log_csv(pid_t PID, struct search_result* result)
