@@ -32,4 +32,5 @@ void sigusr1_handler(int signum, siginfo_t* info, void* context);
 void termination_handler(int signum);
 void sigquit_handler(int signum);
 void sigint_handler(int signum);
+void logged_exit(int exitcode);
 void print_pstree();

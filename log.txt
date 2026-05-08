@@ -1,45 +1,148 @@
-ECE 434 Sp26: Process with PID 6152 is creating a tree node with partition starting at 0x6468e9f972a0 with length 8192 and processes budget 6
-ECE 434 Sp26: Parent with PID 6152 assigned partition [0, 2730) to child with PID 6153
-ECE 434 Sp26: Parent with PID 6152 assigned partition [2730, 5460) to child with PID 6154
-ECE 434 Sp26: Child with PID 6155 received subpartition [5461, 8191)
-ECE 434 Sp26: Leaf process with PID 6155 is now searching through the partition starting at 0x6468e9f99d4a with length 2730
-ECE 434 Sp26: Process with PID 6155 received SIGUSR1 from process with PID 6152
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Child with PID 23968 received subpartition [0, 40000)
+ECE 434 Sp26: Process with PID 23968 is creating a tree node with partition starting at 0x71bbcae99010 with length 40000 and processes budget 3
+ECE 434 Sp26: Parent with PID 23968 assigned partition [0, 13333) to child with PID 23977
+ECE 434 Sp26: Child with PID 23978 received subpartition [13333, 26666)
+ECE 434 Sp26: Leaf process with PID 23978 is now searching through the partition starting at 0x71bbcae9f83a with length 13333
+ECE 434 Sp26: Process with PID 23978 received SIGUSR1 from process with PID 23968
 
-ECE 434 Sp26: Process with PID 6155 received "secret number" / special termination signal 29
+ECE 434 Sp26: Process with PID 23978 received "secret number" / special termination signal 26
 
-ECE 434 Sp26: Process with PID 6152 is creating a tree node with partition starting at 0x6468e9f972a0 with length 8192 and processes budget 6
-ECE 434 Sp26: Child with PID 6153 received subpartition [0, 2730)
-ECE 434 Sp26: Leaf process with PID 6153 is now searching through the partition starting at 0x6468e9f972a0 with length 2730
-ECE 434 Sp26: Process with PID 6153 received SIGQUIT
+Process 23978 exits with code 0
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Parent with PID 23950 assigned partition [0, 40000) to child with PID 23968
+ECE 434 Sp26: Child with PID 23969 received subpartition [40000, 80000)
+ECE 434 Sp26: Process with PID 23969 is creating a tree node with partition starting at 0x71bbcaeac890 with length 40000 and processes budget 3
+ECE 434 Sp26: Child with PID 23974 received subpartition [0, 13333)
+ECE 434 Sp26: Leaf process with PID 23974 is now searching through the partition starting at 0x71bbcaeac890 with length 13333
+ECE 434 Sp26: Process with PID 23974 received SIGUSR1 from process with PID 23969
 
-ECE 434 Sp26: Process with PID 6152 is creating a tree node with partition starting at 0x6468e9f972a0 with length 8192 and processes budget 6
-ECE 434 Sp26: Parent with PID 6152 assigned partition [0, 2730) to child with PID 6153
-ECE 434 Sp26: Child with PID 6154 received subpartition [2730, 5460)
-ECE 434 Sp26: Leaf process with PID 6154 is now searching through the partition starting at 0x6468e9f987f4 with length 2730
-ECE 434 Sp26: Process with PID 6154 received SIGQUIT
+ECE 434 Sp26: Process with PID 23974 received "secret number" / special termination signal 26
 
-ECE 434 Sp26: Process with PID 6152 is creating a tree node with partition starting at 0x6468e9f972a0 with length 8192 and processes budget 6
-ECE 434 Sp26: Parent with PID 6152 assigned partition [0, 2730) to child with PID 6153
-ECE 434 Sp26: Parent with PID 6152 assigned partition [2730, 5460) to child with PID 6154
-ECE 434 Sp26: Parent with PID 6152 assigned partition [5461, 8191) to child with PID 6155
-ECE 434 Sp26: Process with PID 6152 is waiting for its children to report back
-ECE 434 Sp26: Child with PID 6153 stopped by signal: 19
+Process 23974 exits with code 1
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Child with PID 23968 received subpartition [0, 40000)
+ECE 434 Sp26: Process with PID 23968 is creating a tree node with partition starting at 0x71bbcae99010 with length 40000 and processes budget 3
+ECE 434 Sp26: Child with PID 23977 received subpartition [0, 13333)
+ECE 434 Sp26: Leaf process with PID 23977 is now searching through the partition starting at 0x71bbcae99010 with length 13333
+ECE 434 Sp26: Process with PID 23977 received SIGINT
 
-ECE 434 Sp26: Process 6152 received data from child 6153: max=32740, average=16268.037109, keys_found=48,start_time=733.879629934,end_time=733.979805437
+Child with PID 23977 finished its sleep(100) system call. Exiting.
+Process 23977 exits with code 1
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Parent with PID 23950 assigned partition [0, 40000) to child with PID 23968
+ECE 434 Sp26: Child with PID 23969 received subpartition [40000, 80000)
+ECE 434 Sp26: Process with PID 23969 is creating a tree node with partition starting at 0x71bbcaeac890 with length 40000 and processes budget 3
+ECE 434 Sp26: Parent with PID 23969 assigned partition [0, 13333) to child with PID 23974
+ECE 434 Sp26: Child with PID 23975 received subpartition [13333, 26666)
+ECE 434 Sp26: Leaf process with PID 23975 is now searching through the partition starting at 0x71bbcaeb30ba with length 13333
+ECE 434 Sp26: Process with PID 23975 received SIGINT
 
-ECE 434 Sp26: Child with PID 6154 stopped by signal: 19
+Child with PID 23975 finished its sleep(100) system call. Exiting.
+Process 23975 exits with code 5
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Child with PID 23968 received subpartition [0, 40000)
+ECE 434 Sp26: Process with PID 23968 is creating a tree node with partition starting at 0x71bbcae99010 with length 40000 and processes budget 3
+ECE 434 Sp26: Parent with PID 23968 assigned partition [0, 13333) to child with PID 23977
+ECE 434 Sp26: Parent with PID 23968 assigned partition [13333, 26666) to child with PID 23978
+ECE 434 Sp26: Child with PID 23979 received subpartition [26666, 39999)
+ECE 434 Sp26: Leaf process with PID 23979 is now searching through the partition starting at 0x71bbcaea6064 with length 13333
+ECE 434 Sp26: Process with PID 23979 received SIGQUIT
 
-ECE 434 Sp26: Process 6152 received data from child 6154: max=32749, average=16080.472656, keys_found=52,start_time=733.879728418,end_time=733.980041367
+Process 23979 exits with code 0
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Parent with PID 23950 assigned partition [0, 40000) to child with PID 23968
+ECE 434 Sp26: Child with PID 23969 received subpartition [40000, 80000)
+ECE 434 Sp26: Process with PID 23969 is creating a tree node with partition starting at 0x71bbcaeac890 with length 40000 and processes budget 3
+ECE 434 Sp26: Parent with PID 23969 assigned partition [0, 13333) to child with PID 23974
+ECE 434 Sp26: Parent with PID 23969 assigned partition [13333, 26666) to child with PID 23975
+ECE 434 Sp26: Child with PID 23976 received subpartition [26666, 39999)
+ECE 434 Sp26: Leaf process with PID 23976 is now searching through the partition starting at 0x71bbcaeb98e4 with length 13333
+ECE 434 Sp26: Process with PID 23976 received SIGQUIT
 
-ECE 434 Sp26: Child with PID 6155 stopped by signal: 19
+Process 23976 exits with code 1
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Parent with PID 23950 assigned partition [0, 40000) to child with PID 23968
+ECE 434 Sp26: Child with PID 23969 received subpartition [40000, 80000)
+ECE 434 Sp26: Process with PID 23969 is creating a tree node with partition starting at 0x71bbcaeac890 with length 40000 and processes budget 3
+ECE 434 Sp26: Parent with PID 23969 assigned partition [0, 13333) to child with PID 23974
+ECE 434 Sp26: Parent with PID 23969 assigned partition [13333, 26666) to child with PID 23975
+ECE 434 Sp26: Parent with PID 23969 assigned partition [26666, 39999) to child with PID 23976
+ECE 434 Sp26: Process with PID 23969 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 23974 stopped by signal: 19
 
-ECE 434 Sp26: Process 6152 received data from child 6155: max=32767, average=16119.996094, keys_found=50,start_time=733.880070267,end_time=733.980227785
+ECE 434 Sp26: Process 23969 received data from child 23974: max=32766, average=16399.234375, keys_found=18,start_time=2769.190040777,end_time=2769.290280099
 
-Process 6152 is sending signals to its children. Child with PID 6154 found the most keys (52) and child with PID 6153 found the least keys (48). Other children will receive a random secret number with SIGUSR1.
+ECE 434 Sp26: Child with PID 23975 stopped by signal: 19
 
-ECE 434 Sp26: Final result: elements_processed=8190, bytes_sent=216, max=32767, average=16156.168945, keys_found=150,start_time=733.878883020,end_time=748.008985433
+ECE 434 Sp26: Process 23969 received data from child 23975: max=32765, average=16229.506836, keys_found=11,start_time=2769.190378056,end_time=2769.290715601
 
-ECE 434 Sp26: Total execution time: 14.130102413 seconds
+ECE 434 Sp26: Child with PID 23976 stopped by signal: 19
 
-ECE 434 Sp26: Slowest child with PID 6154 with execution time: 0.100312949 seconds
+ECE 434 Sp26: Process 23969 received data from child 23976: max=32763, average=16349.574219, keys_found=22,start_time=2769.190585063,end_time=2769.294812474
+
+Process 23969 is sending signals to its children. Child with PID 23976 found the most keys (22) and child with PID 23975 found the least keys (11). Other children will receive a random secret number with SIGUSR1.
+
+ECE 434 Sp26: Process with PID 23969 received SIGUSR1 from process with PID 23950
+
+ECE 434 Sp26: Process with PID 23969 received "secret number" / special termination signal 26
+
+Process 23969 exits with code 1
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Parent with PID 23950 assigned partition [0, 40000) to child with PID 23968
+ECE 434 Sp26: Parent with PID 23950 assigned partition [40000, 80000) to child with PID 23969
+ECE 434 Sp26: Child with PID 23970 received subpartition [80000, 120000)
+ECE 434 Sp26: Leaf process with PID 23970 is now searching through the partition starting at 0x71bbcaec0110 with length 40000
+ECE 434 Sp26: Process with PID 23970 received SIGINT
+
+Child with PID 23970 finished its sleep(100) system call. Exiting.
+Process 23970 exits with code 7
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Child with PID 23968 received subpartition [0, 40000)
+ECE 434 Sp26: Process with PID 23968 is creating a tree node with partition starting at 0x71bbcae99010 with length 40000 and processes budget 3
+ECE 434 Sp26: Parent with PID 23968 assigned partition [0, 13333) to child with PID 23977
+ECE 434 Sp26: Parent with PID 23968 assigned partition [13333, 26666) to child with PID 23978
+ECE 434 Sp26: Parent with PID 23968 assigned partition [26666, 39999) to child with PID 23979
+ECE 434 Sp26: Process with PID 23968 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 23977 stopped by signal: 19
+
+ECE 434 Sp26: Process 23968 received data from child 23977: max=32767, average=16418.269531, keys_found=15,start_time=2769.190944641,end_time=2769.291121559
+
+ECE 434 Sp26: Child with PID 23978 stopped by signal: 19
+
+ECE 434 Sp26: Process 23968 received data from child 23978: max=32767, average=16495.699219, keys_found=18,start_time=2769.191031596,end_time=2769.294213275
+
+ECE 434 Sp26: Child with PID 23979 stopped by signal: 19
+
+ECE 434 Sp26: Process 23968 received data from child 23979: max=32763, average=16260.122070, keys_found=23,start_time=2769.191144137,end_time=2769.294336485
+
+Process 23968 is sending signals to its children. Child with PID 23979 found the most keys (23) and child with PID 23977 found the least keys (15). Other children will receive a random secret number with SIGUSR1.
+
+ECE 434 Sp26: Process with PID 23968 received SIGQUIT
+
+Process 23968 exits with code 0
+ECE 434 Sp26: Process with PID 23950 is creating a tree node with partition starting at 0x71bbcae99010 with length 120000 and processes budget 12
+ECE 434 Sp26: Parent with PID 23950 assigned partition [0, 40000) to child with PID 23968
+ECE 434 Sp26: Parent with PID 23950 assigned partition [40000, 80000) to child with PID 23969
+ECE 434 Sp26: Parent with PID 23950 assigned partition [80000, 120000) to child with PID 23970
+ECE 434 Sp26: Process with PID 23950 is waiting for its children to report back
+ECE 434 Sp26: Child with PID 23970 stopped by signal: 19
+
+ECE 434 Sp26: Process 23950 received data from child 23970: max=32767, average=16350.606445, keys_found=43,start_time=2768.189874888,end_time=2768.290281790
+
+ECE 434 Sp26: Child with PID 23968 stopped by signal: 19
+
+ECE 434 Sp26: Process 23950 received data from child 23968: max=32767, average=16391.363281, keys_found=56,start_time=2768.190218012,end_time=2782.261589372
+
+ECE 434 Sp26: Child with PID 23969 stopped by signal: 19
+
+ECE 434 Sp26: Process 23950 received data from child 23969: max=32766, average=16326.105469, keys_found=51,start_time=2768.189694074,end_time=2782.280886931
+
+Process 23950 is sending signals to its children. Child with PID 23968 found the most keys (56) and child with PID 23970 found the least keys (43). Other children will receive a random secret number with SIGUSR1.
+
+ECE 434 Sp26: Final result: elements_processed=119998, bytes_sent=648, max=32767, average=16356.024414, keys_found=150,start_time=2767.188557367,end_time=2794.315867830
+
+ECE 434 Sp26: Total execution time: 27.127310463 seconds
+
+ECE 434 Sp26: Slowest child with PID 23969 with execution time: 14.091192857 seconds
 

@@ -3,7 +3,7 @@
 // B-tree parameter
 #define m 3
 #define CHILD_CONSTANT -0xC
-#define POLL_TIMEOUT 5000
+#define POLL_TIMEOUT 20000
 
 FILE* log_file;
 FILE* csv_file;
@@ -39,25 +39,30 @@ int main(int argc, char* argv[])
 
     // part 2 modifications {
 
-    
+    struct sigaction sa;
+    sa.sa_flags = 0;
+    sa.sa_handler= sigquit_handler;
+    sigemptyset(&sa.sa_mask);
+    sigaction(SIGQUIT,&sa,NULL);
+
     signal(SIGQUIT, sigquit_handler);
 
-    struct sigaction sa;
-    sa.sa_flags = SA_SIGINFO;
-    sa.sa_sigaction = sigusr1_handler;
-    sigemptyset(&sa.sa_mask);
-    sigaction(SIGUSR1, &sa, NULL);
-
-    /*
     struct sigaction sa2;
-    sa2.sa_handler = sigint_handler;
+    sa2.sa_flags = SA_SIGINFO;
+    sa2.sa_sigaction = sigusr1_handler;
     sigemptyset(&sa2.sa_mask);
-    sa2.sa_flags = SA_RESTART; 
-    sigaction(SIGINT, &sa2, NULL);
-    */
-    // OR 
-    signal(SIGINT, SIG_IGN);
+    sigaction(SIGUSR1, &sa2, NULL);
+
     
+    struct sigaction sa3;
+    sa3.sa_flags = 0; 
+    sa3.sa_handler = sigint_handler;
+    sigemptyset(&sa3.sa_mask);
+    sigaction(SIGINT, &sa3, NULL);
+    
+    // OR 
+    //signal(SIGINT, SIG_IGN);
+ 
     //}
     
 
@@ -161,13 +166,13 @@ void sigusr1_handler(int signum, siginfo_t* info, void* context)
 void termination_handler(int signum)
 {
     log_msg("ECE 434 Sp26: Process with PID %d received \"secret number\" / special termination signal %d\n", getpid(), signum);
-    exit(my_tree_id);
+    logged_exit(my_tree_id);
 }
 
 void sigquit_handler(int signum)
 {
     log_msg("ECE 434 Sp26: Process with PID %d received SIGQUIT\n", getpid());
-    exit(my_tree_id);
+    logged_exit(my_tree_id);
 }
 
 void sigint_handler(int signum)
@@ -179,12 +184,15 @@ void sigint_handler(int signum)
 
 int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int processes_budget, struct search_result* result)
 {
+    // this is an out variable from the persepctive of the root, but we dont want to reuse results on higher tree depths since all other data is passed through pipes
+    *result = (struct search_result){0};
     clock_gettime(CLOCK_MONOTONIC, &result->start_time);
     int pipefds[m][2];
     pid_t pids[m];
     int16_t* my_partition = partition_ptr;
 
     log_msg("ECE 434 Sp26: Process with PID %d is creating a tree node with partition starting at %p with length %d and processes budget %d", getpid(), partition_ptr, partition_length, processes_budget);
+    sleep(1);
 
     // create subpartitions and assign children to them
     for (int i =0; i < m; i++)
@@ -297,7 +305,7 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
         raise(SIGSTOP);  
         sleep(100);
         log_msg("Child with PID %d finished its sleep(100) system call. Exiting.", getpid());
-        exit(1 + m*i + tree_id);
+        logged_exit(1 + m*i + tree_id);
     }
 
     // Parent
@@ -314,7 +322,9 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
     log_msg("ECE 434 Sp26: Process with PID %d is waiting for its children to report back", mypid);
     // Use a shell to print out pstree since the function isn't provided. Note this is not stored in the log file.
      // only print tree if children are leaf workers to avoid clutter
+    printf("Tree before children of process %d report back:\n", mypid);
     print_pstree();
+    sleep(1);
 
     struct search_result child_results[m];
 
@@ -324,20 +334,6 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
         if (event_count < 0)
         {
             err(-1, "A polling error (%d) occured",event_count);
-        }
-        if (event_count == 0)
-        {
-            // TIMEOUT passed, killing children & reassigning task
-            for (int i = 0; i < m; i++)
-            {
-                if (isReaped[i])
-                {
-                    continue;
-                }
-                kill(pids[i], SIGKILL);
-                waitpid(pids[i], NULL, 0);
-                return create_tree(my_partition,partition_length,tree_id,processes_budget, result);
-            }
         }
         if (event_count)
         {
@@ -390,6 +386,7 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
         
     }
 
+    // Part 2 Rules: {
     int max_keys_found = 0;
     int max_keys_found_pid = -1;
     int min_keys_found = 150; // max possible keys found since there are only 150 hidden numbers
@@ -411,6 +408,7 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
 
     printf("Tree before process %d sends out signals to its children:\n", mypid);
     print_pstree();
+    sleep(1);
 
     log_msg("Process %d is sending signals to its children. Child with PID %d found the most keys (%d) and child with PID %d found the least keys (%d). Other children will receive a random secret number with SIGUSR1.\n", mypid, max_keys_found_pid, max_keys_found, min_keys_found_pid, min_keys_found);
     kill(max_keys_found_pid, SIGCONT);
@@ -419,7 +417,7 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
     {
         if (pids[i] != max_keys_found_pid && pids[i] != min_keys_found_pid)
         {
-            const union sigval sigval = { .sival_int = rand() % 22 + 10 }; // corresponding to random usable signal
+            const union sigval sigval = { .sival_int = rand() % 8 + 23 }; // corresponding to random usable signal
             sigqueue(pids[i], SIGUSR1, sigval); // send random secret number
             kill(pids[i], SIGCONT);
         }
@@ -430,11 +428,21 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
     // a bit later
     printf("Tree after process %d sends out signals to its children and before it issues to them SIGQUIT:\n", mypid);
     print_pstree();
-    sleep(4);
+    sleep(1);
     for (int i = 0; i < m; i++)
     {
         kill(pids[i], SIGQUIT);
     }
+    for (int i = 0; i < m; i++)
+    {
+        pid_t res = waitpid(pids[i], NULL, 0);
+        if (res < 0)
+        {
+            err(-1, "Error waiting for child %d in process %d", pids[i], mypid);
+        }
+    }
+
+    // } end part 2 adjustments
 
     result->average /= m;
     clock_gettime(CLOCK_MONOTONIC, &result->end_time);
@@ -452,6 +460,12 @@ void log_msg(const char* format, ...)
     va_end(args);
     printf("\n");
     fprintf(log_file, "\n");
+}
+
+void logged_exit(int exitcode)
+{
+    log_msg("Process %d exits with code %d\n", getpid(), exitcode);
+    exit(exitcode);
 }
 
 void print_pstree()
@@ -523,4 +537,3 @@ int generate_file(int L, int16_t** out_array)
     return 0;
 
 }
-
