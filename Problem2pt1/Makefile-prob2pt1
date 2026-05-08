@@ -1,0 +1,18 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -O2
+TARGET = signals_part1
+SRC = signals_part1.c
+
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
+
+run: $(TARGET)
+	./$(TARGET)
+
+output: $(TARGET)
+	./$(TARGET) > output.txt
+
+clean:
+	rm -f $(TARGET) output.txt
