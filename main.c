@@ -1,7 +1,7 @@
 #include "main.h"
 
 // B-tree parameter
-#define m 2
+#define m 3
 #define CHILD_CONSTANT -0xC
 #define POLL_TIMEOUT 5000
 
@@ -45,14 +45,18 @@ int main(int argc, char* argv[])
     struct sigaction sa;
     sa.sa_flags = SA_SIGINFO;
     sa.sa_sigaction = sigusr1_handler;
+    sigemptyset(&sa.sa_mask);
     sigaction(SIGUSR1, &sa, NULL);
 
+    /*
     struct sigaction sa2;
     sa2.sa_handler = sigint_handler;
+    sigemptyset(&sa2.sa_mask);
+    sa2.sa_flags = SA_RESTART; 
     sigaction(SIGINT, &sa2, NULL);
-    
+    */
     // OR 
-    //signal(SIGINT, SIG_IGN);
+    signal(SIGINT, SIG_IGN);
     
     //}
     
@@ -206,7 +210,8 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
                 err(-1, "Process with PID %d failed to read assigned partition from pipe. Exiting.", getpid());
             }
             close(pipefds[i][0]);
-            log_msg("ECE 434 Sp26: Child with PID %d received a subpartition starting at subindex %d with length %d", getpid(), (int)((void*)my_partition - (void*)partition_ptr) >> 1, partition_length/m);
+            int start = (int)((void*)my_partition - (void*)partition_ptr) >> 1;
+            log_msg("ECE 434 Sp26: Child with PID %d received subpartition [%d, %d)", getpid(), start, start+partition_length/m);
             break;
         }
         else //parent
@@ -217,7 +222,8 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
             {
                 err(-1, "Process with PID %d failed to write to pipe. Exiting.", getpid());
             }
-            log_msg("ECE 434 Sp26: Parent with PID %d assigned partition starting at subindex %d with length %d to child with PID %d", getpid(), (int)((void*)assigned_partition_ptr - (void*)partition_ptr) >> 1, partition_length/m, pids[i]);
+            int start = (int)((void*)assigned_partition_ptr - (void*)partition_ptr) >> 1;
+            log_msg("ECE 434 Sp26: Parent with PID %d assigned partition [%d, %d) to child with PID %d", getpid(), start, start+partition_length/m, pids[i]);
             result->bytes_sent += sizeof(assigned_partition_ptr);
             close(pipefds[i][1]);
         }
@@ -290,6 +296,7 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
         // New behavior for part 2
         raise(SIGSTOP);  
         sleep(100);
+        log_msg("Child with PID %d finished its sleep(100) system call. Exiting.", getpid());
         exit(1 + m*i + tree_id);
     }
 
@@ -306,6 +313,7 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
     int isReaped[m] = {0};
     log_msg("ECE 434 Sp26: Process with PID %d is waiting for its children to report back", mypid);
     // Use a shell to print out pstree since the function isn't provided. Note this is not stored in the log file.
+     // only print tree if children are leaf workers to avoid clutter
     print_pstree();
 
     struct search_result child_results[m];
@@ -401,22 +409,28 @@ int create_tree(int16_t* partition_ptr, int partition_length, int tree_id, int p
         }
     }
 
+    printf("Tree before process %d sends out signals to its children:\n", mypid);
+    print_pstree();
+
+    log_msg("Process %d is sending signals to its children. Child with PID %d found the most keys (%d) and child with PID %d found the least keys (%d). Other children will receive a random secret number with SIGUSR1.\n", mypid, max_keys_found_pid, max_keys_found, min_keys_found_pid, min_keys_found);
     kill(max_keys_found_pid, SIGCONT);
 
     for (int i = 0; i < m; i++)
     {
         if (pids[i] != max_keys_found_pid && pids[i] != min_keys_found_pid)
         {
-            const union sigval sigval = { .sival_int = rand() % 90 + 10 }; // send random secret number
+            const union sigval sigval = { .sival_int = rand() % 22 + 10 }; // corresponding to random usable signal
             sigqueue(pids[i], SIGUSR1, sigval); // send random secret number
+            kill(pids[i], SIGCONT);
         }
     }
     kill(min_keys_found_pid, SIGCONT);
     sleep(10);
-    kill(min_keys_found, SIGINT);
+    kill(min_keys_found_pid, SIGINT);
     // a bit later
+    printf("Tree after process %d sends out signals to its children and before it issues to them SIGQUIT:\n", mypid);
     print_pstree();
-    sleep(1);
+    sleep(4);
     for (int i = 0; i < m; i++)
     {
         kill(pids[i], SIGQUIT);
