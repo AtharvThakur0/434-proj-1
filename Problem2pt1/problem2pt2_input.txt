@@ -1,0 +1,30 @@
+Test case for Problem 2 Part 2
+
+Program:
+problem2pt2.c
+
+Compile command:
+gcc -Wall -Wextra -O2 -o problem2pt2 problem2pt2.c
+
+Run command:
+./problem2pt2
+
+Note:
+This program does not require user input from stdin. The test case is controlled by the signal masks and signal-sending logic inside the program.
+
+Signals tested:
+SIGINT, SIGABRT, SIGILL, SIGCHLD, SIGSEGV, SIGFPE, SIGHUP, SIGTSTP, SIGQUIT
+
+Parent mask:
+The parent blocks SIGINT, SIGQUIT, and SIGTSTP before forking.
+
+Child masks:
+Child 0 and child 1 block SIGINT, SIGQUIT, and SIGTSTP.
+Child 2 and child 3 block SIGABRT, SIGILL, SIGCHLD, SIGSEGV, SIGFPE, and SIGHUP.
+
+Test behavior:
+The program sends each signal three times to the parent and to each child.
+The program uses sigpending(), sigwaitinfo(), sigtimedwait(), sigwait(), and sigismember() to observe pending signals.
+
+Expected output file:
+problem2pt2_output.txt
