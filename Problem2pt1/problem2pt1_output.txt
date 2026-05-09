@@ -1,0 +1,44 @@
+child 0 pid 390165 total 0
+child 1 pid 390166 total 0
+child 2 pid 390167 total 0
+child 3 pid 390168 total 0
+send 20 to 390168
+sig 20 caught by 390168 from 390164
+child 3 pid 390168 total 2001000
+send 1 to 390165
+send 4 to 390165
+sig 4 caught by 390165 from 390164
+child 0 pid 390165 total 2001000
+send 2 to 390166
+send 1 to 390166
+sig 1 caught by 390166 from 390164
+child 1 pid 390166 total 2001000
+send 2 to 390165
+sig 2 caught by 390165 from 390164
+child 0 pid 390165 total 8002000
+send 6 to 390168
+sig 6 caught by 390168 from 390164
+child 3 pid 390168 total 8002000
+send 20 to 390166
+child 2 pid 390167 total 2001000
+send 2 to 390166
+send 11 to 390166
+sig 11 caught by 390166 from 390164
+child 1 pid 390166 total 8002000
+send 11 to 390166
+sig 11 caught by 390166 from 390164
+child 1 pid 390166 total 18003000
+send 6 to 390168
+sig 6 caught by 390168 from 390164
+child 3 pid 390168 total 18003000
+send 20 to 390168
+sig 20 caught by 390168 from 390164
+child 3 pid 390168 total 32004000
+send 2 to 390167
+sig 2 caught by 390167 from 390164
+child 2 pid 390167 total 8002000
+send 6 to 390168
+sig 6 caught by 390168 from 390164
+child 3 pid 390168 total 50005000
+child 0 pid 390165 total 18003000
+send 17 to 390168

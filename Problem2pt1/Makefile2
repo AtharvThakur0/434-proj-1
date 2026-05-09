@@ -1,0 +1,19 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -O2
+
+TARGET = problem2pt2
+SRC = problem2pt2.c
+
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
+
+run: $(TARGET)
+	./$(TARGET)
+
+output: $(TARGET)
+	./$(TARGET) > problem2pt2_output.txt
+
+clean:
+	rm -f $(TARGET) problem2pt2_output.txt
