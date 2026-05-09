@@ -1,248 +1,290 @@
-parent pid=405757 blocks SIGINT SIGQUIT SIGTSTP before fork
-child 0 pid=405758 blocks SIGINT SIGQUIT SIGTSTP
-child 0 pid=405758 total=0
-child 1 pid=405759 blocks SIGINT SIGQUIT SIGTSTP
-child 1 pid=405759 total=0
-child 2 pid=405760 blocks the other assignment signals
-child 2 pid=405760 total=0
-child 3 pid=405761 blocks the other assignment signals
-child 3 pid=405761 total=0
-child 0 pid=405758 total=12502500
-child 1 pid=405759 total=12502500
-child 2 pid=405760 total=12502500
-child 3 pid=405761 total=12502500
-child 0 pid=405758 total=50005000
-child 1 pid=405759 total=50005000
-child 2 pid=405760 total=50005000
-child 3 pid=405761 total=50005000
-child 0 pid=405758 total=112507500
-child 1 pid=405759 total=112507500
-child 2 pid=405760 total=112507500
-child 3 pid=405761 total=112507500
+parent pid=587273 blocks SIGINT SIGQUIT SIGTSTP before fork
+child 0 pid=587274 blocks SIGINT SIGQUIT SIGTSTP
+child 2 pid=587276 blocks the other assignment signals
+child 2 pid=587276 total=0
+child 1 pid=587275 blocks SIGINT SIGQUIT SIGTSTP
+child 1 pid=587275 total=0
+child 3 pid=587277 blocks the other assignment signals
+child 3 pid=587277 total=0
+child 0 pid=587274 total=0
+child 2 pid=587276 total=12502500
+child 1 pid=587275 total=12502500
+child 3 pid=587277 total=12502500
+child 0 pid=587274 total=12502500
+child 2 pid=587276 total=50005000
+child 1 pid=587275 total=50005000
+child 3 pid=587277 total=50005000
+child 0 pid=587274 total=50005000
+child 2 pid=587276 total=112507500
+child 1 pid=587275 total=112507500
+child 3 pid=587277 total=112507500
+child 0 pid=587274 total=112507500
 
 parent sends each signal 3 times to itself
-child 1 pid=405759 total=200010000
-handler: pid=405757 caught sig=6 from=405757
-child 0 pid=405758 total=200010000
-handler: pid=405757 caught sig=6 from=405757
-handler: pid=405757 caught sig=6 from=405757
-handler: pid=405757 caught sig=4 from=405757
-handler: pid=405757 caught sig=4 from=405757
-handler: pid=405757 caught sig=4 from=405757
-child 2 pid=405760 total=200010000
-handler: pid=405757 caught sig=17 from=405757
-handler: pid=405757 caught sig=17 from=405757
-handler: pid=405757 caught sig=17 from=405757
-handler: pid=405757 caught sig=11 from=405757
-handler: pid=405757 caught sig=11 from=405757
-handler: pid=405757 caught sig=11 from=405757
-handler: pid=405757 caught sig=8 from=405757
-handler: pid=405757 caught sig=8 from=405757
-handler: pid=405757 caught sig=8 from=405757
-handler: pid=405757 caught sig=1 from=405757
-handler: pid=405757 caught sig=1 from=405757
-handler: pid=405757 caught sig=1 from=405757
-pending check for parent before waits pid=405757: 2 20 3
-parent pid=405757: sigwaitinfo got sig=2 from=405757
-parent pid=405757: sigtimedwait got sig=3 from=405757
-parent pid=405757: sigwait got sig=20
-pending check for parent after waits pid=405757:
+handler: pid=587273 caught sig=6 from=587273
+handler: pid=587273 caught sig=6 from=587273
+handler: pid=587273 caught sig=6 from=587273
+handler: pid=587273 caught sig=4 from=587273
+handler: pid=587273 caught sig=4 from=587273
+handler: pid=587273 caught sig=4 from=587273
+handler: pid=587273 caught sig=17 from=587273
+child 2 pid=587276 total=200010000
+handler: pid=587273 caught sig=17 from=587273
+handler: pid=587273 caught sig=17 from=587273
+child 1 pid=587275 total=200010000
+child 3 pid=587277 total=200010000
+child 0 pid=587274 total=200010000
+handler: pid=587273 caught sig=11 from=587273
+handler: pid=587273 caught sig=11 from=587273
+handler: pid=587273 caught sig=11 from=587273
+handler: pid=587273 caught sig=8 from=587273
+handler: pid=587273 caught sig=8 from=587273
+handler: pid=587273 caught sig=8 from=587273
+handler: pid=587273 caught sig=1 from=587273
+handler: pid=587273 caught sig=1 from=587273
+handler: pid=587273 caught sig=1 from=587273
+pending check for parent before waits pid=587273: 2 20 3
+parent pid=587273: sigwaitinfo got sig=2 from=587273
+parent pid=587273: sigtimedwait got sig=3 from=587273
+parent pid=587273: sigwait got sig=20
+pending check for parent after waits pid=587273:
 
 parent sends each signal 3 times to every child
-parent pid=405757 sends sig=2 to child pid=405758
-child 3 pid=405761 total=200010000
-parent pid=405757 sends sig=2 to child pid=405758
-parent pid=405757 sends sig=2 to child pid=405758
-parent pid=405757 sends sig=6 to child pid=405758
-handler: pid=405758 caught sig=6 from=405757
-parent pid=405757 sends sig=6 to child pid=405758
-handler: pid=405758 caught sig=6 from=405757
-pending check for child pid=405758: 2
-child pid=405758: sigtimedwait got sig=2 from=405757
-child 3 pid=405761 total=312512500
-parent pid=405757 sends sig=6 to child pid=405758
-handler: pid=405758 caught sig=6 from=405757
-parent pid=405757 sends sig=4 to child pid=405758
-handler: pid=405758 caught sig=4 from=405757
-parent pid=405757 sends sig=4 to child pid=405758
-handler: pid=405758 caught sig=4 from=405757
-parent pid=405757 sends sig=4 to child pid=405758
-handler: pid=405758 caught sig=4 from=405757
-parent pid=405757 sends sig=17 to child pid=405758
-handler: pid=405758 caught sig=17 from=405757
-parent pid=405757 sends sig=17 to child pid=405758
-handler: pid=405758 caught sig=17 from=405757
-parent pid=405757 sends sig=17 to child pid=405758
-handler: pid=405758 caught sig=17 from=405757
-parent pid=405757 sends sig=11 to child pid=405758
-handler: pid=405758 caught sig=11 from=405757
-parent pid=405757 sends sig=11 to child pid=405758
-handler: pid=405758 caught sig=11 from=405757
-parent pid=405757 sends sig=11 to child pid=405758
-handler: pid=405758 caught sig=11 from=405757
-parent pid=405757 sends sig=8 to child pid=405758
-handler: pid=405758 caught sig=8 from=405757
-parent pid=405757 sends sig=8 to child pid=405758
-handler: pid=405758 caught sig=8 from=405757
-parent pid=405757 sends sig=8 to child pid=405758
-handler: pid=405758 caught sig=8 from=405757
-parent pid=405757 sends sig=1 to child pid=405758
-handler: pid=405758 caught sig=1 from=405757
-parent pid=405757 sends sig=1 to child pid=405758
-handler: pid=405758 caught sig=1 from=405757
-parent pid=405757 sends sig=1 to child pid=405758
-handler: pid=405758 caught sig=1 from=405757
-parent pid=405757 sends sig=20 to child pid=405758
-child pid=405758: sigtimedwait got sig=20 from=405757
-parent pid=405757 sends sig=20 to child pid=405758
-child pid=405758: sigtimedwait got sig=20 from=405757
-parent pid=405757 sends sig=20 to child pid=405758
-child pid=405758: sigtimedwait got sig=20 from=405757
-parent pid=405757 sends sig=3 to child pid=405758
-child pid=405758: sigtimedwait got sig=3 from=405757
-parent pid=405757 sends sig=3 to child pid=405758
-child pid=405758: sigtimedwait got sig=3 from=405757
-parent pid=405757 sends sig=3 to child pid=405758
-child pid=405758: sigtimedwait got sig=3 from=405757
-parent pid=405757 sends sig=2 to child pid=405759
-parent pid=405757 sends sig=2 to child pid=405759
-child pid=405758: no more pending blocked signals
-pending check for child after wait pid=405758:
-child 0 pid=405758 done total=200010000
-handler: pid=405757 caught sig=17 from=405758
-parent pid=405757 sends sig=2 to child pid=405759
-parent pid=405757 sends sig=6 to child pid=405759
-handler: pid=405759 caught sig=6 from=405757
-pending check for child pid=405759: 2
-child pid=405759: sigtimedwait got sig=2 from=405757
-parent pid=405757 sends sig=6 to child pid=405759
-handler: pid=405759 caught sig=6 from=405757
-parent pid=405757 sends sig=6 to child pid=405759
-handler: pid=405759 caught sig=6 from=405757
-parent pid=405757 sends sig=4 to child pid=405759
-handler: pid=405759 caught sig=4 from=405757
-parent pid=405757 sends sig=4 to child pid=405759
-handler: pid=405759 caught sig=4 from=405757
-parent pid=405757 sends sig=4 to child pid=405759
-handler: pid=405759 caught sig=4 from=405757
-parent pid=405757 sends sig=17 to child pid=405759
-handler: pid=405759 caught sig=17 from=405757
-parent pid=405757 sends sig=17 to child pid=405759
-handler: pid=405759 caught sig=17 from=405757
-parent pid=405757 sends sig=17 to child pid=405759
-handler: pid=405759 caught sig=17 from=405757
-parent pid=405757 sends sig=11 to child pid=405759
-handler: pid=405759 caught sig=11 from=405757
-parent pid=405757 sends sig=11 to child pid=405759
-handler: pid=405759 caught sig=11 from=405757
-parent pid=405757 sends sig=11 to child pid=405759
-handler: pid=405759 caught sig=11 from=405757
-parent pid=405757 sends sig=8 to child pid=405759
-handler: pid=405759 caught sig=8 from=405757
-parent pid=405757 sends sig=8 to child pid=405759
-handler: pid=405759 caught sig=8 from=405757
-parent pid=405757 sends sig=8 to child pid=405759
-handler: pid=405759 caught sig=8 from=405757
-parent pid=405757 sends sig=1 to child pid=405759
-handler: pid=405759 caught sig=1 from=405757
-parent pid=405757 sends sig=1 to child pid=405759
-handler: pid=405759 caught sig=1 from=405757
-parent pid=405757 sends sig=1 to child pid=405759
-handler: pid=405759 caught sig=1 from=405757
-parent pid=405757 sends sig=20 to child pid=405759
-child pid=405759: sigtimedwait got sig=20 from=405757
-parent pid=405757 sends sig=20 to child pid=405759
-child pid=405759: sigtimedwait got sig=20 from=405757
-parent pid=405757 sends sig=20 to child pid=405759
-child pid=405759: sigtimedwait got sig=20 from=405757
-parent pid=405757 sends sig=3 to child pid=405759
-child pid=405759: sigtimedwait got sig=3 from=405757
-parent pid=405757 sends sig=3 to child pid=405759
-child pid=405759: sigtimedwait got sig=3 from=405757
-parent pid=405757 sends sig=3 to child pid=405759
-child pid=405759: sigtimedwait got sig=3 from=405757
-parent pid=405757 sends sig=2 to child pid=405760
-child pid=405759: no more pending blocked signals
-pending check for child after wait pid=405759:
-child 1 pid=405759 done total=242011000
-parent pid=405757 sends sig=2 to child pid=405760
-handler: pid=405757 caught sig=17 from=405759
-parent pid=405757 sends sig=2 to child pid=405760
-parent pid=405757 sends sig=6 to child pid=405760
-parent pid=405757 sends sig=6 to child pid=405760
-parent pid=405757 sends sig=6 to child pid=405760
-parent pid=405757 sends sig=4 to child pid=405760
-parent pid=405757 sends sig=4 to child pid=405760
-parent pid=405757 sends sig=4 to child pid=405760
-parent pid=405757 sends sig=17 to child pid=405760
-parent pid=405757 sends sig=17 to child pid=405760
-parent pid=405757 sends sig=17 to child pid=405760
-parent pid=405757 sends sig=11 to child pid=405760
-parent pid=405757 sends sig=11 to child pid=405760
-parent pid=405757 sends sig=11 to child pid=405760
-parent pid=405757 sends sig=8 to child pid=405760
-parent pid=405757 sends sig=8 to child pid=405760
-parent pid=405757 sends sig=8 to child pid=405760
-parent pid=405757 sends sig=1 to child pid=405760
-parent pid=405757 sends sig=1 to child pid=405760
-parent pid=405757 sends sig=1 to child pid=405760
-parent pid=405757 sends sig=20 to child pid=405760
-parent pid=405757 sends sig=20 to child pid=405760
-parent pid=405757 sends sig=20 to child pid=405760
-parent pid=405757 sends sig=3 to child pid=405760
-parent pid=405757 sends sig=3 to child pid=405760
-parent pid=405757 sends sig=3 to child pid=405760
-parent pid=405757 sends sig=2 to child pid=405761
-parent pid=405757 sends sig=2 to child pid=405761
-parent pid=405757 sends sig=2 to child pid=405761
-parent pid=405757 sends sig=6 to child pid=405761
-parent pid=405757 sends sig=6 to child pid=405761
-parent pid=405757 sends sig=6 to child pid=405761
-parent pid=405757 sends sig=4 to child pid=405761
-parent pid=405757 sends sig=4 to child pid=405761
-parent pid=405757 sends sig=4 to child pid=405761
-parent pid=405757 sends sig=17 to child pid=405761
-parent pid=405757 sends sig=17 to child pid=405761
-parent pid=405757 sends sig=17 to child pid=405761
-parent pid=405757 sends sig=11 to child pid=405761
-parent pid=405757 sends sig=11 to child pid=405761
-parent pid=405757 sends sig=11 to child pid=405761
-parent pid=405757 sends sig=8 to child pid=405761
-parent pid=405757 sends sig=8 to child pid=405761
-parent pid=405757 sends sig=8 to child pid=405761
-parent pid=405757 sends sig=1 to child pid=405761
-parent pid=405757 sends sig=1 to child pid=405761
-parent pid=405757 sends sig=1 to child pid=405761
-parent pid=405757 sends sig=20 to child pid=405761
-parent pid=405757 sends sig=20 to child pid=405761
-parent pid=405757 sends sig=20 to child pid=405761
-parent pid=405757 sends sig=3 to child pid=405761
-parent pid=405757 sends sig=3 to child pid=405761
-parent pid=405757 sends sig=3 to child pid=405761
-parent: child pid=405758 exited status=0
-parent: child pid=405759 exited status=0
-pending check for child pid=405760: 2 6 4 17 11 8 1 20 3
-child pid=405760: sigtimedwait got sig=4 from=405757
-child pid=405760: sigtimedwait got sig=8 from=405757
-child pid=405760: sigtimedwait got sig=11 from=405757
-child pid=405760: sigtimedwait got sig=1 from=405757
-child pid=405760: sigtimedwait got sig=6 from=405757
-child pid=405760: sigtimedwait got sig=17 from=405757
-child pid=405760: no more pending blocked signals
-pending check for child after wait pid=405760: 2 20 3
-child 2 pid=405760 done total=288012000
-handler: pid=405757 caught sig=17 from=405760
-parent: child pid=405760 exited status=0
-pending check for child pid=405761: 2 6 4 17 11 8 1 20 3
-child pid=405761: sigtimedwait got sig=4 from=405757
-child pid=405761: sigtimedwait got sig=8 from=405757
-child pid=405761: sigtimedwait got sig=11 from=405757
-child pid=405761: sigtimedwait got sig=1 from=405757
-child pid=405761: sigtimedwait got sig=6 from=405757
-child pid=405761: sigtimedwait got sig=17 from=405757
-child pid=405761: no more pending blocked signals
-pending check for child after wait pid=405761: 2 20 3
-child 3 pid=405761 done total=338013000
-handler: pid=405757 caught sig=17 from=405761
-parent: child pid=405761 exited status=0
-parent pid=405757 unblocked its signals and finished
+parent pid=587273 sends sig=2 to child pid=587274
+parent pid=587273 sends sig=2 to child pid=587274
+parent pid=587273 sends sig=2 to child pid=587274
+parent pid=587273 sends sig=6 to child pid=587274
+handler: pid=587274 caught sig=6 from=587273
+parent pid=587273 sends sig=6 to child pid=587274
+handler: pid=587274 caught sig=6 from=587273
+pending check for child pid=587274: 2
+child pid=587274: sigtimedwait got sig=2 from=587273
+child 3 pid=587277 total=312512500
+parent pid=587273 sends sig=6 to child pid=587274
+handler: pid=587274 caught sig=6 from=587273
+parent pid=587273 sends sig=4 to child pid=587274
+handler: pid=587274 caught sig=4 from=587273
+parent pid=587273 sends sig=4 to child pid=587274
+handler: pid=587274 caught sig=4 from=587273
+parent pid=587273 sends sig=4 to child pid=587274
+handler: pid=587274 caught sig=4 from=587273
+parent pid=587273 sends sig=17 to child pid=587274
+handler: pid=587274 caught sig=17 from=587273
+parent pid=587273 sends sig=17 to child pid=587274
+handler: pid=587274 caught sig=17 from=587273
+parent pid=587273 sends sig=17 to child pid=587274
+handler: pid=587274 caught sig=17 from=587273
+parent pid=587273 sends sig=11 to child pid=587274
+handler: pid=587274 caught sig=11 from=587273
+parent pid=587273 sends sig=11 to child pid=587274
+handler: pid=587274 caught sig=11 from=587273
+parent pid=587273 sends sig=11 to child pid=587274
+handler: pid=587274 caught sig=11 from=587273
+parent pid=587273 sends sig=8 to child pid=587274
+handler: pid=587274 caught sig=8 from=587273
+parent pid=587273 sends sig=8 to child pid=587274
+handler: pid=587274 caught sig=8 from=587273
+parent pid=587273 sends sig=8 to child pid=587274
+handler: pid=587274 caught sig=8 from=587273
+parent pid=587273 sends sig=1 to child pid=587274
+handler: pid=587274 caught sig=1 from=587273
+parent pid=587273 sends sig=1 to child pid=587274
+handler: pid=587274 caught sig=1 from=587273
+parent pid=587273 sends sig=1 to child pid=587274
+handler: pid=587274 caught sig=1 from=587273
+parent pid=587273 sends sig=20 to child pid=587274
+child pid=587274: sigtimedwait got sig=20 from=587273
+parent pid=587273 sends sig=20 to child pid=587274
+child pid=587274: sigtimedwait got sig=20 from=587273
+parent pid=587273 sends sig=20 to child pid=587274
+child pid=587274: sigtimedwait got sig=20 from=587273
+parent pid=587273 sends sig=3 to child pid=587274
+child pid=587274: sigtimedwait got sig=3 from=587273
+parent pid=587273 sends sig=3 to child pid=587274
+child pid=587274: sigtimedwait got sig=3 from=587273
+parent pid=587273 sends sig=3 to child pid=587274
+child pid=587274: sigtimedwait got sig=3 from=587273
+parent pid=587273 sends sig=2 to child pid=587275
+child pid=587274: no more pending blocked signals
+pending check for child after wait pid=587274:
+parent pid=587273 sends sig=2 to child pid=587275
+child 0 pid=587274 done total=200010000
+handler: pid=587273 caught sig=17 from=587274
+parent pid=587273 sends sig=2 to child pid=587275
+parent pid=587273 sends sig=6 to child pid=587275
+handler: pid=587275 caught sig=6 from=587273
+pending check for child pid=587275: 2
+child pid=587275: sigtimedwait got sig=2 from=587273
+parent pid=587273 sends sig=6 to child pid=587275
+handler: pid=587275 caught sig=6 from=587273
+parent pid=587273 sends sig=6 to child pid=587275
+handler: pid=587275 caught sig=6 from=587273
+parent pid=587273 sends sig=4 to child pid=587275
+handler: pid=587275 caught sig=4 from=587273
+parent pid=587273 sends sig=4 to child pid=587275
+handler: pid=587275 caught sig=4 from=587273
+parent pid=587273 sends sig=4 to child pid=587275
+handler: pid=587275 caught sig=4 from=587273
+parent pid=587273 sends sig=17 to child pid=587275
+handler: pid=587275 caught sig=17 from=587273
+parent pid=587273 sends sig=17 to child pid=587275
+handler: pid=587275 caught sig=17 from=587273
+parent pid=587273 sends sig=17 to child pid=587275
+handler: pid=587275 caught sig=17 from=587273
+parent pid=587273 sends sig=11 to child pid=587275
+handler: pid=587275 caught sig=11 from=587273
+parent pid=587273 sends sig=11 to child pid=587275
+handler: pid=587275 caught sig=11 from=587273
+parent pid=587273 sends sig=11 to child pid=587275
+handler: pid=587275 caught sig=11 from=587273
+parent pid=587273 sends sig=8 to child pid=587275
+handler: pid=587275 caught sig=8 from=587273
+parent pid=587273 sends sig=8 to child pid=587275
+handler: pid=587275 caught sig=8 from=587273
+parent pid=587273 sends sig=8 to child pid=587275
+handler: pid=587275 caught sig=8 from=587273
+parent pid=587273 sends sig=1 to child pid=587275
+handler: pid=587275 caught sig=1 from=587273
+parent pid=587273 sends sig=1 to child pid=587275
+handler: pid=587275 caught sig=1 from=587273
+parent pid=587273 sends sig=1 to child pid=587275
+handler: pid=587275 caught sig=1 from=587273
+parent pid=587273 sends sig=20 to child pid=587275
+child pid=587275: sigtimedwait got sig=20 from=587273
+parent pid=587273 sends sig=20 to child pid=587275
+child pid=587275: sigtimedwait got sig=20 from=587273
+parent pid=587273 sends sig=20 to child pid=587275
+child pid=587275: sigtimedwait got sig=20 from=587273
+parent pid=587273 sends sig=3 to child pid=587275
+child pid=587275: sigtimedwait got sig=3 from=587273
+parent pid=587273 sends sig=3 to child pid=587275
+child pid=587275: sigtimedwait got sig=3 from=587273
+parent pid=587273 sends sig=3 to child pid=587275
+child pid=587275: sigtimedwait got sig=3 from=587273
+parent pid=587273 sends sig=2 to child pid=587276
+handler: pid=587276 caught sig=2 from=587273
+pending check for child pid=587276:
+child pid=587275: no more pending blocked signals
+pending check for child after wait pid=587275:
+parent pid=587273 sends sig=2 to child pid=587276
+child 1 pid=587275 done total=242011000
+handler: pid=587276 caught sig=2 from=587273
+handler: pid=587273 caught sig=17 from=587275
+parent pid=587273 sends sig=2 to child pid=587276
+handler: pid=587276 caught sig=2 from=587273
+parent pid=587273 sends sig=6 to child pid=587276
+child pid=587276: sigtimedwait got sig=6 from=587273
+parent pid=587273 sends sig=6 to child pid=587276
+child pid=587276: sigtimedwait got sig=6 from=587273
+parent pid=587273 sends sig=6 to child pid=587276
+child pid=587276: sigtimedwait got sig=6 from=587273
+parent pid=587273 sends sig=4 to child pid=587276
+child pid=587276: sigtimedwait got sig=4 from=587273
+parent pid=587273 sends sig=4 to child pid=587276
+child pid=587276: sigtimedwait got sig=4 from=587273
+parent pid=587273 sends sig=4 to child pid=587276
+child pid=587276: sigtimedwait got sig=4 from=587273
+parent pid=587273 sends sig=17 to child pid=587276
+child pid=587276: sigtimedwait got sig=17 from=587273
+parent pid=587273 sends sig=17 to child pid=587276
+child pid=587276: sigtimedwait got sig=17 from=587273
+parent pid=587273 sends sig=17 to child pid=587276
+child pid=587276: sigtimedwait got sig=17 from=587273
+parent pid=587273 sends sig=11 to child pid=587276
+child pid=587276: sigtimedwait got sig=11 from=587273
+parent pid=587273 sends sig=11 to child pid=587276
+child pid=587276: sigtimedwait got sig=11 from=587273
+parent pid=587273 sends sig=11 to child pid=587276
+child pid=587276: sigtimedwait got sig=11 from=587273
+parent pid=587273 sends sig=8 to child pid=587276
+child pid=587276: sigtimedwait got sig=8 from=587273
+parent pid=587273 sends sig=8 to child pid=587276
+child pid=587276: sigtimedwait got sig=8 from=587273
+parent pid=587273 sends sig=8 to child pid=587276
+child pid=587276: sigtimedwait got sig=8 from=587273
+parent pid=587273 sends sig=1 to child pid=587276
+child pid=587276: sigtimedwait got sig=1 from=587273
+parent pid=587273 sends sig=1 to child pid=587276
+child pid=587276: sigtimedwait got sig=1 from=587273
+parent pid=587273 sends sig=1 to child pid=587276
+child pid=587276: sigtimedwait got sig=1 from=587273
+parent pid=587273 sends sig=20 to child pid=587276
+handler: pid=587276 caught sig=20 from=587273
+parent pid=587273 sends sig=20 to child pid=587276
+handler: pid=587276 caught sig=20 from=587273
+parent pid=587273 sends sig=20 to child pid=587276
+handler: pid=587276 caught sig=20 from=587273
+parent pid=587273 sends sig=3 to child pid=587276
+handler: pid=587276 caught sig=3 from=587273
+parent pid=587273 sends sig=3 to child pid=587276
+handler: pid=587276 caught sig=3 from=587273
+parent pid=587273 sends sig=3 to child pid=587276
+handler: pid=587276 caught sig=3 from=587273
+parent pid=587273 sends sig=2 to child pid=587277
+handler: pid=587277 caught sig=2 from=587273
+pending check for child pid=587277:
+child pid=587276: no more pending blocked signals
+pending check for child after wait pid=587276:
+parent pid=587273 sends sig=2 to child pid=587277
+child 2 pid=587276 done total=288012000
+handler: pid=587277 caught sig=2 from=587273
+handler: pid=587273 caught sig=17 from=587276
+parent pid=587273 sends sig=2 to child pid=587277
+handler: pid=587277 caught sig=2 from=587273
+parent pid=587273 sends sig=6 to child pid=587277
+child pid=587277: sigtimedwait got sig=6 from=587273
+parent pid=587273 sends sig=6 to child pid=587277
+child pid=587277: sigtimedwait got sig=6 from=587273
+parent pid=587273 sends sig=6 to child pid=587277
+child pid=587277: sigtimedwait got sig=6 from=587273
+parent pid=587273 sends sig=4 to child pid=587277
+child pid=587277: sigtimedwait got sig=4 from=587273
+parent pid=587273 sends sig=4 to child pid=587277
+child pid=587277: sigtimedwait got sig=4 from=587273
+parent pid=587273 sends sig=4 to child pid=587277
+child pid=587277: sigtimedwait got sig=4 from=587273
+parent pid=587273 sends sig=17 to child pid=587277
+child pid=587277: sigtimedwait got sig=17 from=587273
+parent pid=587273 sends sig=17 to child pid=587277
+child pid=587277: sigtimedwait got sig=17 from=587273
+parent pid=587273 sends sig=17 to child pid=587277
+child pid=587277: sigtimedwait got sig=17 from=587273
+parent pid=587273 sends sig=11 to child pid=587277
+child pid=587277: sigtimedwait got sig=11 from=587273
+parent pid=587273 sends sig=11 to child pid=587277
+child pid=587277: sigtimedwait got sig=11 from=587273
+parent pid=587273 sends sig=11 to child pid=587277
+child pid=587277: sigtimedwait got sig=11 from=587273
+parent pid=587273 sends sig=8 to child pid=587277
+child pid=587277: sigtimedwait got sig=8 from=587273
+parent pid=587273 sends sig=8 to child pid=587277
+child pid=587277: sigtimedwait got sig=8 from=587273
+parent pid=587273 sends sig=8 to child pid=587277
+child pid=587277: sigtimedwait got sig=8 from=587273
+parent pid=587273 sends sig=1 to child pid=587277
+child pid=587277: sigtimedwait got sig=1 from=587273
+parent pid=587273 sends sig=1 to child pid=587277
+child pid=587277: sigtimedwait got sig=1 from=587273
+parent pid=587273 sends sig=1 to child pid=587277
+child pid=587277: sigtimedwait got sig=1 from=587273
+parent pid=587273 sends sig=20 to child pid=587277
+handler: pid=587277 caught sig=20 from=587273
+parent pid=587273 sends sig=20 to child pid=587277
+handler: pid=587277 caught sig=20 from=587273
+parent pid=587273 sends sig=20 to child pid=587277
+handler: pid=587277 caught sig=20 from=587273
+parent pid=587273 sends sig=3 to child pid=587277
+handler: pid=587277 caught sig=3 from=587273
+parent pid=587273 sends sig=3 to child pid=587277
+handler: pid=587277 caught sig=3 from=587273
+parent pid=587273 sends sig=3 to child pid=587277
+handler: pid=587277 caught sig=3 from=587273
+parent: child pid=587274 exited status=0
+parent: child pid=587275 exited status=0
+parent: child pid=587276 exited status=0
+child pid=587277: no more pending blocked signals
+pending check for child after wait pid=587277:
+child 3 pid=587277 done total=338013000
+handler: pid=587273 caught sig=17 from=587277
+parent: child pid=587277 exited status=0
+parent pid=587273 unblocked its signals and finished

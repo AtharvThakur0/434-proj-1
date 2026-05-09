@@ -123,7 +123,7 @@ void child_code(int id) {
     }
 
     fflush(stdout);
-    sigprocmask(SIG_BLOCK, &blocked, NULL);
+    sigprocmask(SIG_SETMASK, &blocked, NULL);
 
     for (int i = 0; i <= top; i++) {
         total += i;
